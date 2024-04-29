@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.LoginController">
+   <children>
+      <Label layoutX="165.0" layoutY="29.0" text="MENU CHAT">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <TextField fx:id="texto_nombre" layoutX="165.0" layoutY="150.0" prefHeight="25.0" prefWidth="270.0" />
+      <TextField fx:id="texto_contrasenha" layoutX="165.0" layoutY="235.0" prefHeight="25.0" prefWidth="270.0" />
+      <Label layoutX="165.0" layoutY="124.0" text="Nombre" />
+      <Label layoutX="165.0" layoutY="208.0" text="Contraseña" />
+      <Button fx:id="boton_registrarse" layoutX="165.0" layoutY="308.0" mnemonicParsing="false" text="¿Estas registrado?" />
+      <Button fx:id="boton_aceptar" layoutX="378.0" layoutY="308.0" mnemonicParsing="false" onAction="#onButtonClick" text="Aceptar" />
+   </children>
+</AnchorPane>

@@ -16,6 +16,9 @@ public class Usuario {
     @Column
     private boolean usu_activo;
 
+    public Usuario() {
+    }
+
     public Usuario(int usu_id, String usu_nombre, String usu_contrasenha, String usu_foto, boolean usu_activo) {
         this.usu_id = usu_id;
         this.usu_nombre = usu_nombre;
@@ -62,5 +65,16 @@ public class Usuario {
 
     public void setUsu_activo(boolean usu_activo) {
         this.usu_activo = usu_activo;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "usu_id=" + usu_id +
+                ", usu_nombre='" + usu_nombre + '\'' +
+                ", usu_contrasenha='" + usu_contrasenha + '\'' +
+                ", usu_foto='" + usu_foto + '\'' +
+                ", usu_activo=" + usu_activo +
+                '}';
     }
 }

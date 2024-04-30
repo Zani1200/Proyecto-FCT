@@ -15,7 +15,8 @@
       <TextField fx:id="texto_contrasenha" layoutX="165.0" layoutY="235.0" prefHeight="25.0" prefWidth="270.0" />
       <Label layoutX="165.0" layoutY="124.0" text="Nombre" />
       <Label layoutX="165.0" layoutY="208.0" text="Contraseña" />
-      <Button fx:id="boton_registrarse" layoutX="165.0" layoutY="308.0" mnemonicParsing="false" text="¿Estas registrado?" />
-      <Button fx:id="boton_aceptar" layoutX="378.0" layoutY="308.0" mnemonicParsing="false" onAction="#onButtonClick" text="Aceptar" />
+      <Button fx:id="boton_registrarse" layoutX="165.0" layoutY="308.0" mnemonicParsing="false" onAction="#onRegistrarButtonClick" text="¿Estas registrado?" />
+      <Button fx:id="boton_aceptar" layoutX="378.0" layoutY="308.0" mnemonicParsing="false" onAction="#onAceptarButtonClick" text="Aceptar" />
+      <Label fx:id="label_informacion_menu" layoutX="181.0" layoutY="267.0" />
    </children>
 </AnchorPane>

@@ -18,17 +18,23 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         Session session = HibernateUtil.getSessionfactory().openSession();
         FXMLLoader loginLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        FXMLLoader registroUsuarioLoader = new FXMLLoader(HelloApplication.class.getResource("registroUsuario.fxml"));
 
         Parent loginPane = loginLoader.load();
+        Parent registroUsuariPane = registroUsuarioLoader.load();
 
         Scene loginScene = new Scene(loginPane, 600,400);
+        Scene registroUsuarioScene = new Scene(registroUsuariPane, 600,400);
 
         SceneHandler sceneHandler = new SceneHandler(stage);
         sceneHandler.addScene(SceneHandler.LOGIN_SCENE,loginScene);
+        sceneHandler.addScene(SceneHandler.REGISTRO_USUARIO_SCENE,registroUsuarioScene);
 
         HashMap<String, GenericController> controllerHashMap = new HashMap<>();
         GenericController loginController = loginLoader.getController();
         controllerHashMap.put(SceneHandler.LOGIN_SCENE,loginController);
+        GenericController registroUsuarioController = registroUsuarioLoader.getController();
+        controllerHashMap.put(SceneHandler.REGISTRO_USUARIO_SCENE, registroUsuarioController);
         controllerHashMap.values().forEach(genericController -> genericController.setSceneHandler(sceneHandler));
 
         stage.setTitle("Hello!");

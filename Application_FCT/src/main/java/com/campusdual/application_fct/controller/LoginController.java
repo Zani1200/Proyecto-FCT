@@ -34,7 +34,7 @@ public class LoginController extends GenericController{
             label_informacion_menu.setText("El usuario/contraseña no son correctos");
         }
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
-        ((MenuController) prevMenu).setSocket();
+        ((MenuController) prevMenu).setSocket(usuario);
     }
 
     public void onRegistrarButtonClick(ActionEvent actionEvent) {

@@ -18,17 +18,19 @@ public class Usuario {
     @Column
     private String usu_foto;
     @Column
-    private boolean usu_activo;
+    private int usu_activo;
 
     public Usuario() {
     }
 
-    public Usuario(int usu_id, String usu_nombre) {
+    public Usuario(int usu_id, String usu_nombre, String usu_foto, int usu_activo) {
         this.usu_id = usu_id;
         this.usu_nombre = usu_nombre;
+        this.usu_foto = usu_foto;
+        this.usu_activo = usu_activo;
     }
 
-    public Usuario(int usu_id, String usu_nombre, String usu_contrasenha, String usu_foto, boolean usu_activo) throws IOException {
+    public Usuario(int usu_id, String usu_nombre, String usu_contrasenha, String usu_foto, int usu_activo) throws IOException {
         this.usu_id = usu_id;
         this.usu_nombre = usu_nombre;
         this.usu_contrasenha = usu_contrasenha;
@@ -68,14 +70,13 @@ public class Usuario {
         this.usu_foto = usu_foto;
     }
 
-    public boolean isUsu_activo() {
+    public int getUsu_activo() {
         return usu_activo;
     }
 
-    public void setUsu_activo(boolean usu_activo) {
+    public void setUsu_activo(int usu_activo) {
         this.usu_activo = usu_activo;
     }
-
 
     @Override
     public String toString() {

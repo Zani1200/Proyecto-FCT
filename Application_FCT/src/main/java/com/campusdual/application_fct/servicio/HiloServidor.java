@@ -7,11 +7,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HiloServidor extends Thread{
     private Socket socketCliente;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
+    private static List<Usuario> usuarioList = new ArrayList<>();
     private Usuario usuario;
 
     public HiloServidor(Socket socketCliente) throws IOException {
@@ -22,18 +25,20 @@ public class HiloServidor extends Thread{
 
     @Override
     public void run() {
-        System.out.println(socketCliente.getPort()+" Port");
-        System.out.println(socketCliente.getLocalPort()+" Local Port");
-        System.out.println(socketCliente.getInetAddress()+" InetAddress");
-        System.out.println(socketCliente.getLocalAddress() + "LocalAddress");
-        System.out.println(socketCliente.toString());
-        do {
-            try {
-                String mensaje = dataInputStream.readUTF();
-                System.out.println(mensaje);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } while (true);
+        try {
+            System.out.println(socketCliente.toString());
+            String[] datosUsuario = dataInputStream.readUTF().split(",");
+            int id = Integer.parseInt(datosUsuario[0]);
+            int usuConectado = Integer.parseInt((datosUsuario[3]));
+            usuario = new Usuario(id,datosUsuario[1],datosUsuario[2],usuConectado);
+            usuarioList.add(usuario);
+                do {
+                    String mensaje = dataInputStream.readUTF();
+                    System.out.println(usuario.getUsu_nombre()+"\n" +
+                            mensaje);
+                } while (true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -25,11 +25,14 @@ public class MenuController extends GenericController{
     private Socket cliente;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
+    private Usuario usuario;
 
     public void onEnviarButtonClick(ActionEvent actionEvent) throws IOException {
+        dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo());
         dataOutputStream.writeUTF("jkingvdresuihwedfiuyhbodsv");
     }
-    public void setSocket() throws IOException {
+    public void setSocket(Usuario usuario) throws IOException {
+        this.usuario = usuario;
         cliente = new Socket("localhost", 6000);
         dataInputStream = new DataInputStream(cliente.getInputStream());
         dataOutputStream = new DataOutputStream(cliente.getOutputStream());

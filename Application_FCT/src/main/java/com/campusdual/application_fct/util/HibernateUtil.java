@@ -1,5 +1,6 @@
 package com.campusdual.application_fct.util;
 
+import com.campusdual.application_fct.entities.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
@@ -30,4 +31,23 @@ public class HibernateUtil {
         }
         return sessionfactory;
     }
+
+    public static void agregarUsuarios(Usuario usuario){
+        Session session = HibernateUtil.getSessionfactory().openSession();
+        session.beginTransaction();
+        session.save(usuario);
+        session.getTransaction().commit();
+        session.close();
+    }
+    /*
+    public static void agregarUsuariosGrupo(Usuario usuario, Grupo grupo){
+        Session session = HibernateUtil.getSessionfactory().openSession();
+        session.beginTransaction();
+        usuario.usuarioUnido(grupo);
+        session.save(grupo);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+     */
 }

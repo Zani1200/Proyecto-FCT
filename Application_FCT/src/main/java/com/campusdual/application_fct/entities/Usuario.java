@@ -1,6 +1,10 @@
 package com.campusdual.application_fct.entities;
 
 import javax.persistence.*;
+import java.io.IOException;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -19,7 +23,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int usu_id, String usu_nombre, String usu_contrasenha, String usu_foto, boolean usu_activo) {
+    public Usuario(int usu_id, String usu_nombre) {
+        this.usu_id = usu_id;
+        this.usu_nombre = usu_nombre;
+    }
+
+    public Usuario(int usu_id, String usu_nombre, String usu_contrasenha, String usu_foto, boolean usu_activo) throws IOException {
         this.usu_id = usu_id;
         this.usu_nombre = usu_nombre;
         this.usu_contrasenha = usu_contrasenha;
@@ -67,6 +76,7 @@ public class Usuario {
         this.usu_activo = usu_activo;
     }
 
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -77,4 +87,6 @@ public class Usuario {
                 ", usu_activo=" + usu_activo +
                 '}';
     }
+
+
 }

@@ -19,10 +19,6 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Session session = HibernateUtil.getSessionfactory().openSession();
-        Usuario admin = new Usuario(1,"admin","admin","",1);
-        Usuario user = new Usuario(2,"user","user","",0);
-        HibernateUtil.agregarUsuarios(admin);
-        HibernateUtil.agregarUsuarios(user);
 
         FXMLLoader loginLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
         FXMLLoader registroUsuarioLoader = new FXMLLoader(HelloApplication.class.getResource("registroUsuario.fxml"));

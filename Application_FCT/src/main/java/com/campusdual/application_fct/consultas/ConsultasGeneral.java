@@ -7,4 +7,5 @@ import java.util.List;
 public interface ConsultasGeneral {
 
     Usuario validarUsuario(String nombre, String contrasenha);
+
 }

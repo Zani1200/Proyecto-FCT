@@ -17,7 +17,7 @@ public class MenuController extends GenericController{
     @FXML
     private Button boton_crear_grupo;
     @FXML
-    private ListView view_chat;
+    private ListView<String> view_chat = new ListView<>();
     @FXML
     public TextField texto_enviado;
     @FXML
@@ -28,13 +28,15 @@ public class MenuController extends GenericController{
     private Usuario usuario;
 
     public void onEnviarButtonClick(ActionEvent actionEvent) throws IOException {
-        dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo());
-        dataOutputStream.writeUTF("jkingvdresuihwedfiuyhbodsv");
+        dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_contrasenha()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo());
+        dataOutputStream.writeUTF(texto_enviado.getText());
+
     }
     public void setSocket(Usuario usuario) throws IOException {
         this.usuario = usuario;
         cliente = new Socket("localhost", 6000);
         dataInputStream = new DataInputStream(cliente.getInputStream());
         dataOutputStream = new DataOutputStream(cliente.getOutputStream());
+
     }
 }

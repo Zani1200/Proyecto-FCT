@@ -1,5 +1,6 @@
 package com.campusdual.application_fct.util;
 
+import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -39,15 +40,12 @@ public class HibernateUtil {
         session.getTransaction().commit();
         session.close();
     }
-    /*
-    public static void agregarUsuariosGrupo(Usuario usuario, Grupo grupo){
+
+    public static void agregarMensaje(Mensaje mensaje){
         Session session = HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
-        usuario.usuarioUnido(grupo);
-        session.save(grupo);
+        session.save(mensaje);
         session.getTransaction().commit();
         session.close();
     }
-
-     */
 }

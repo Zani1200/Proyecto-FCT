@@ -19,15 +19,16 @@ public class Usuario {
     private String usu_foto;
     @Column
     private int usu_activo;
+    @OneToMany(mappedBy = "id_usu", fetch = FetchType.LAZY)
+    public List<Mensaje> usu_mensajes = new ArrayList<>();
 
     public Usuario() {
     }
 
-    public Usuario(int usu_id, String usu_nombre, String usu_foto, int usu_activo) {
+    public Usuario(int usu_id, String usu_nombre, String usu_foto) {
         this.usu_id = usu_id;
         this.usu_nombre = usu_nombre;
         this.usu_foto = usu_foto;
-        this.usu_activo = usu_activo;
     }
 
     public Usuario(int usu_id, String usu_nombre, String usu_contrasenha, String usu_foto, int usu_activo) throws IOException {
@@ -37,7 +38,6 @@ public class Usuario {
         this.usu_foto = usu_foto;
         this.usu_activo = usu_activo;
     }
-
     public int getUsu_id() {
         return usu_id;
     }
@@ -73,9 +73,16 @@ public class Usuario {
     public int getUsu_activo() {
         return usu_activo;
     }
-
     public void setUsu_activo(int usu_activo) {
         this.usu_activo = usu_activo;
+    }
+
+    public List<Mensaje> getUsu_mensajes() {
+        return usu_mensajes;
+    }
+
+    public void setUsu_mensajes(List<Mensaje> usu_mensajes) {
+        this.usu_mensajes = usu_mensajes;
     }
 
     @Override

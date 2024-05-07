@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.MenuController">
+<AnchorPane fx:id="listViewMensajes" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.MenuController">
    <children>
-      <ListView fx:id="view_chat" layoutX="342.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="view_chat" layoutX="72.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" />
       <TextField fx:id="texto_enviado" layoutX="72.0" layoutY="303.0" />
       <Button fx:id="boton_enviar" layoutX="228.0" layoutY="303.0" mnemonicParsing="false" onAction="#onEnviarButtonClick" text="enviar" />
    </children>

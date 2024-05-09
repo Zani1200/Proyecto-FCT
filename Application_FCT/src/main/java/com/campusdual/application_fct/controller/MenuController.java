@@ -1,7 +1,12 @@
 package com.campusdual.application_fct.controller;
 
+import com.campusdual.application_fct.consultas.MenuConsultas;
+import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Usuario;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +17,9 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MenuController extends GenericController{
     @FXML
@@ -22,14 +30,17 @@ public class MenuController extends GenericController{
     public TextField texto_enviado;
     @FXML
     private Button boton_enviar;
+    public ObservableList<String> almacenRuta = FXCollections.observableArrayList();
     private Socket cliente;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
     private Usuario usuario;
+    private List<Mensaje> mensajeList;
 
     public void onEnviarButtonClick(ActionEvent actionEvent) throws IOException {
         dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_contrasenha()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo());
         dataOutputStream.writeUTF(texto_enviado.getText());
+
 
     }
     public void setSocket(Usuario usuario) throws IOException {
@@ -37,6 +48,13 @@ public class MenuController extends GenericController{
         cliente = new Socket("localhost", 6000);
         dataInputStream = new DataInputStream(cliente.getInputStream());
         dataOutputStream = new DataOutputStream(cliente.getOutputStream());
-
+        Platform.runLater(() -> {
+            MenuConsultas menuConsultas = new MenuConsultas();
+            mensajeList = menuConsultas.getMensajesGrupo();
+            for(int i = 0;i< mensajeList.size();i++){
+                almacenRuta.add(mensajeList.get(i).getMensaje());
+            }
+            view_chat.setItems(almacenRuta);
+        });
     }
 }

@@ -12,6 +12,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HiloServidor extends Thread{
     private Socket socketCliente;
@@ -34,24 +35,19 @@ public class HiloServidor extends Thread{
                 String[] datosUsuario = dataInputStream.readUTF().split(",");
                 int id = Integer.parseInt(datosUsuario[0]);
                 int usuConectado = Integer.parseInt((datosUsuario[4]));
-                usuario = new Usuario(id,datosUsuario[1],datosUsuario[2],datosUsuario[3],usuConectado);
+                usuario = new Usuario(id, datosUsuario[1], datosUsuario[2], datosUsuario[3], usuConectado);
+
                 String mensaje = dataInputStream.readUTF();
-                HibernateUtil.agregarMensaje(new Mensaje(usuario,mensaje));
-                mensajeList = getMensajesGrupo();
-                System.out.println(usuario.getUsu_nombre()+"\n" +
-                        mensaje+"\n" +
+                HibernateUtil.agregarMensaje(new Mensaje(usuario, mensaje));
+
+                System.out.println(usuario.getUsu_nombre() + "\n" +
+                        mensaje + "\n" +
                         mensajeList.toString());
-                
+
             } while (true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public List<Mensaje> getMensajesGrupo() {
-        Session session = HibernateUtil.getSessionfactory().openSession();
-        List<Mensaje> mensajesList = session.createQuery("SELECT j.mensaje, j.id_usu FROM Mensaje j",Mensaje.class).list();
-        return mensajesList;
     }
 
     @Override

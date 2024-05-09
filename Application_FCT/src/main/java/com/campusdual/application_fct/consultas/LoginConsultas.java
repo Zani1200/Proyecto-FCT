@@ -1,5 +1,6 @@
 package com.campusdual.application_fct.consultas;
 
+import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.util.HibernateUtil;
 import org.hibernate.Session;
@@ -22,6 +23,10 @@ public class LoginConsultas implements ConsultasGeneral {
         return usuario;
     }
 
+    @Override
+    public List<Mensaje> getMensajesGrupo() {
+        return null;
+    }
 
 
 }

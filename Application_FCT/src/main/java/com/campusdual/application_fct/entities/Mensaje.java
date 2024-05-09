@@ -13,6 +13,9 @@ public class Mensaje {
     @Column
     private String mensaje;
 
+    public Mensaje() {
+    }
+
     public Mensaje(Usuario id_usu, String mensaje) {
         this.id_usu = id_usu;
         this.mensaje = mensaje;

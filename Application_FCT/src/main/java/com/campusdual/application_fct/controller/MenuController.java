@@ -5,6 +5,7 @@ import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Usuario;
 
 import javafx.application.Platform;
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +37,18 @@ public class MenuController extends GenericController{
     private DataOutputStream dataOutputStream;
     private Usuario usuario;
     private List<Mensaje> mensajeList;
+    private Timer timer = new Timer();
+    private TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() {
+            MenuConsultas menuConsultas = new MenuConsultas();
+            mensajeList = menuConsultas.getMensajesGrupo();
+            for (int i = 0; i < mensajeList.size(); i++) {
+                almacenRuta.add(mensajeList.get(i).getId_usu().getUsu_nombre()+" "+mensajeList.get(i).getMensaje());
+            }
+            view_chat.setItems(almacenRuta);
+        }
+    };
 
     public void onEnviarButtonClick(ActionEvent actionEvent) throws IOException {
         dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_contrasenha()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo());
@@ -48,13 +61,8 @@ public class MenuController extends GenericController{
         cliente = new Socket("localhost", 6000);
         dataInputStream = new DataInputStream(cliente.getInputStream());
         dataOutputStream = new DataOutputStream(cliente.getOutputStream());
-        Platform.runLater(() -> {
-            MenuConsultas menuConsultas = new MenuConsultas();
-            mensajeList = menuConsultas.getMensajesGrupo();
-            for(int i = 0;i< mensajeList.size();i++){
-                almacenRuta.add(mensajeList.get(i).getMensaje());
-            }
-            view_chat.setItems(almacenRuta);
-        });
+        timer.schedule(timerTask,0,10000);
     }
+
+
 }

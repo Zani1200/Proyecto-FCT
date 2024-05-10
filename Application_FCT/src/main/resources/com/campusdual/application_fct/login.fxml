@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.LoginController">
+<AnchorPane fx:id="fondo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="611.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.LoginController">
    <children>
       <Label layoutX="165.0" layoutY="29.0" text="MENU CHAT">
          <font>
@@ -18,5 +19,6 @@
       <Button fx:id="boton_registrarse" layoutX="165.0" layoutY="308.0" mnemonicParsing="false" onAction="#onRegistrarButtonClick" text="¿Estas registrado?" />
       <Button fx:id="boton_aceptar" layoutX="378.0" layoutY="308.0" mnemonicParsing="false" onAction="#onAceptarButtonClick" text="Aceptar" />
       <Label fx:id="label_informacion_menu" layoutX="181.0" layoutY="267.0" />
+      <ImageView fx:id="imagen" fitHeight="123.0" fitWidth="135.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

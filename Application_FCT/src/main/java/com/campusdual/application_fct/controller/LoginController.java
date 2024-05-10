@@ -9,6 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
@@ -32,9 +34,10 @@ public class LoginController extends GenericController{
         Usuario usuario = loginConsultas.validarUsuario(texto_nombre.getText(), texto_contrasenha.getText());
         if(loginConsultas.validarUsuario(texto_nombre.getText(), texto_contrasenha.getText()) == null) {
             label_informacion_menu.setText("El usuario/contraseña no son correctos");
+        } else {
+            sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
+            ((MenuController) prevMenu).setSocket(usuario);
         }
-        sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
-        ((MenuController) prevMenu).setSocket(usuario);
     }
 
     public void onRegistrarButtonClick(ActionEvent actionEvent) {

@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.RegistroUsuarioController">
+<AnchorPane fx:id="fondo_registro" prefHeight="400.0" prefWidth="600.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.RegistroUsuarioController">
     <children>
-        <Label layoutX="126.0" layoutY="29.0" text="REGISTRO CHAT">
-            <font>
-                <Font size="48.0" />
-            </font>
-        </Label>
-        <TextField fx:id="texto_nombre" layoutX="165.0" layoutY="150.0" prefHeight="25.0" prefWidth="270.0" />
-        <TextField fx:id="texto_contrasenha" layoutX="165.0" layoutY="235.0" prefHeight="25.0" prefWidth="270.0" />
-        <Label layoutX="165.0" layoutY="124.0" text="Nombre" />
-        <Label layoutX="165.0" layoutY="208.0" text="Contraseña" />
-        <Button fx:id="boton_registrarse" layoutX="165.0" layoutY="308.0" mnemonicParsing="false" onAction="#onRegistrarButtonClick" text="¿Estas registrado?" />
-        <Button fx:id="boton_aceptar" layoutX="378.0" layoutY="308.0" mnemonicParsing="false" onAction="#onAceptarButtonClick" text="Aceptar" />
-        <Label fx:id="label_informacion_menu" layoutX="181.0" layoutY="267.0" />
+      <AnchorPane fx:id="fondo_registro_datos" layoutX="130.0" layoutY="44.0" prefHeight="312.0" prefWidth="327.0">
+         <children>
+            <ImageView fx:id="foto_perfil" fitHeight="80.0" fitWidth="80.0" layoutX="117.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="60.0" />
+            <Button fx:id="boton_der" layoutX="231.0" layoutY="91.0" mnemonicParsing="false" text="&gt;" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="110.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="159.0" layoutY="9.0" text="Foto" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="40.0" />
+            <Button fx:id="boton_izq" layoutX="86.0" layoutY="91.0" mnemonicParsing="false" text="&lt;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="110.0" />
+            <Label alignment="CENTER" layoutX="156.0" layoutY="6.0" prefHeight="25.0" prefWidth="180.0" text="Registro Cuenta" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

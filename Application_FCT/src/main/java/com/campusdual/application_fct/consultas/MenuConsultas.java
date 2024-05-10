@@ -20,7 +20,8 @@ public class MenuConsultas implements ConsultasGeneral{
         Session session = HibernateUtil.getSessionfactory().openSession();
         List<Object[]> mensajesQuery = session.createQuery("SELECT j.mensaje, m.usu_id, m.usu_nombre, m.usu_foto FROM Mensaje j " +
                 "INNER JOIN Usuario m " +
-                "ON j.id_usu = m.usu_id",Object[].class).getResultList();
+                "ON j.id_usu = m.usu_id " +
+                "ORDER BY j.msj_id",Object[].class).getResultList();
         List<Mensaje> mensajeArrayList = new ArrayList<>();
         for(Object[] columna : mensajesQuery){
             Mensaje mensaje = new Mensaje(new Usuario((Integer) columna[1],(String) columna[2], (String) columna[3]),(String) columna[0]);

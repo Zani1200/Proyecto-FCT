@@ -10,14 +10,20 @@
       <AnchorPane fx:id="fondo_registro_datos" layoutX="130.0" layoutY="44.0" prefHeight="312.0" prefWidth="327.0">
          <children>
             <ImageView fx:id="foto_perfil" fitHeight="80.0" fitWidth="80.0" layoutX="117.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="60.0" />
-            <Button fx:id="boton_der" layoutX="231.0" layoutY="91.0" mnemonicParsing="false" text="&gt;" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="110.0" />
+            <Button fx:id="boton_der" layoutX="231.0" layoutY="91.0" mnemonicParsing="false" onAction="#ButtonDerechaOnClick" text="&gt;" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="110.0" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="159.0" layoutY="9.0" text="Foto" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="40.0" />
-            <Button fx:id="boton_izq" layoutX="86.0" layoutY="91.0" mnemonicParsing="false" text="&lt;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="110.0" />
+            <Button fx:id="boton_izq" layoutX="86.0" layoutY="91.0" mnemonicParsing="false" onAction="#ButtonIzquierdaOnClick" text="&lt;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="110.0" />
             <Label alignment="CENTER" layoutX="156.0" layoutY="6.0" prefHeight="25.0" prefWidth="180.0" text="Registro Cuenta" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
+            <Label alignment="CENTER" layoutX="150.0" layoutY="148.0" text="Nombre" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
+            <TextField layoutX="65.0" layoutY="165.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+            <Label alignment="CENTER" layoutX="142.0" layoutY="198.0" text="Contraseña" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
+            <PasswordField layoutX="97.0" layoutY="215.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+            <Button layoutX="225.0" layoutY="267.0" mnemonicParsing="false" text="Crear Cuenta" />
+            <Label layoutX="59.0" layoutY="271.0" />
          </children>
       </AnchorPane>
     </children>

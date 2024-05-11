@@ -16,3 +16,7 @@
     -fx-background-color: white;
     -fx-background-radius: 10px;
 }
+
+#foto_perfil {
+    -fx-background-radius: 10px;
+}

@@ -32,7 +32,7 @@ public class LoginController extends GenericController{
     public void onAceptarButtonClick(ActionEvent actionEvent) throws IOException {
         LoginConsultas loginConsultas = new LoginConsultas();
         Usuario usuario = loginConsultas.validarUsuario(texto_nombre.getText(), texto_contrasenha.getText());
-        if(loginConsultas.validarUsuario(texto_nombre.getText(), texto_contrasenha.getText()) == null) {
+        if(usuario == null) {
             label_informacion_menu.setText("El usuario/contraseña no son correctos");
         } else {
             sceneHandler.changeToScene(SceneHandler.MENU_SCENE);

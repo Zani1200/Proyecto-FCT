@@ -21,18 +21,30 @@ public class RegistroUsuarioController extends GenericController implements Init
     @FXML
     private ImageView foto_perfil;
     private List<Image> imageList = new ArrayList<>();
+    private Integer numeroImagen = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\SmallLogo.scale-400.png"));
-        foto_perfil.setImage(imageList.get(0));
+        imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoEstandar.png"));
+        imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoPerfilHombre.png"));
+        imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoPerfilMujer.png"));
+        foto_perfil.setImage(imageList.get(numeroImagen));
     }
 
-    public void onButtonClick(ActionEvent actionEvent) {
-        sceneHandler.changeToScene(SceneHandler.LOGIN_SCENE);
+    public void ButtonDerechaOnClick(ActionEvent actionEvent) {
+        numeroImagen++;
+        if (numeroImagen > 2){
+            numeroImagen = 0;
+        }
+        foto_perfil.setImage(imageList.get(numeroImagen));
     }
 
-    public void cambioFoto(){
 
+    public void ButtonIzquierdaOnClick(ActionEvent actionEvent) {
+        numeroImagen--;
+        if (numeroImagen < 0){
+            numeroImagen = 2;
+        }
+        foto_perfil.setImage(imageList.get(numeroImagen));
     }
 }

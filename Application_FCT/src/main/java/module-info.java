@@ -17,4 +17,6 @@ module com.campusdual.application_fct {
     opens com.campusdual.application_fct.util to javafx.fxml;
     exports com.campusdual.application_fct.servicio;
     opens com.campusdual.application_fct.servicio to javafx.fxml;
+    exports com.campusdual.application_fct.excepciones;
+    opens com.campusdual.application_fct.excepciones to javafx.fxml;
 }

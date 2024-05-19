@@ -1,10 +1,18 @@
 package com.campusdual.application_fct.controller;
 
+import com.campusdual.application_fct.entities.Usuario;
+import com.campusdual.application_fct.excepciones.ExisteUsuario;
+import com.campusdual.application_fct.excepciones.NoExisteUsuario;
+import com.campusdual.application_fct.excepciones.UsuarioNoValido;
+import com.campusdual.application_fct.util.HibernateUtil;
 import com.campusdual.application_fct.util.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -15,9 +23,11 @@ import java.util.ResourceBundle;
 
 public class RegistroUsuarioController extends GenericController implements Initializable {
     @FXML
-    private Button boton_izq;
+    private Label informacion_registro;
     @FXML
-    private Button boton_der;
+    private TextField txtField_nombre;
+    @FXML
+    private PasswordField password_registro;
     @FXML
     private ImageView foto_perfil;
     private List<Image> imageList = new ArrayList<>();
@@ -46,5 +56,18 @@ public class RegistroUsuarioController extends GenericController implements Init
             numeroImagen = 2;
         }
         foto_perfil.setImage(imageList.get(numeroImagen));
+    }
+
+    public void OnAceptarButtonClick(ActionEvent actionEvent){
+        try {
+            HibernateUtil.agregarUsuarios(new Usuario(txtField_nombre.getText(), password_registro.getText(), "", 0));
+            sceneHandler.changeToScene(SceneHandler.LOGIN_SCENE);
+        } catch (ExisteUsuario | UsuarioNoValido e){
+            informacion_registro.setText(e.getMessage());
+        }
+    }
+
+    public void OnSalirButtonClick(ActionEvent actionEvent) {
+        sceneHandler.changeToScene(SceneHandler.LOGIN_SCENE);
     }
 }

@@ -25,6 +25,13 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String usu_nombre, String usu_contrasenha, String usu_foto, int usu_activo) {
+        this.usu_nombre = usu_nombre;
+        this.usu_contrasenha = usu_contrasenha;
+        this.usu_foto = usu_foto;
+        this.usu_activo = usu_activo;
+    }
+
     public Usuario(int usu_id, String usu_nombre, String usu_foto) {
         this.usu_id = usu_id;
         this.usu_nombre = usu_nombre;

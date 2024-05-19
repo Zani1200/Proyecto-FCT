@@ -5,8 +5,15 @@
 
 <AnchorPane fx:id="listViewMensajes" prefHeight="400.0" prefWidth="600.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.MenuController">
    <children>
-      <ListView fx:id="view_chat" layoutX="34.0" layoutY="38.0" prefHeight="291.0" prefWidth="533.0" />
-      <TextField fx:id="texto_enviado" layoutX="35.0" layoutY="354.0" prefHeight="25.0" prefWidth="473.0" />
-      <Button fx:id="boton_enviar" layoutX="521.0" layoutY="354.0" mnemonicParsing="false" onAction="#onEnviarButtonClick" text="enviar" />
+      <ListView fx:id="view_chat" layoutX="45.0" layoutY="37.0" prefHeight="317.0" prefWidth="423.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0" />
+      <TextField fx:id="texto_enviado" layoutX="184.0" layoutY="359.0" prefHeight="26.0" prefWidth="346.0" AnchorPane.bottomAnchor="14.600000000000023" />
+      <Button fx:id="boton_enviar" layoutX="538.0" layoutY="360.0" mnemonicParsing="false" onAction="#onEnviarButtonClick" text="enviar" />
+      <ListView layoutX="47.0" layoutY="37.0" prefHeight="400.0" prefWidth="129.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox layoutY="3.0" prefHeight="234.0" prefWidth="48.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="48.0" text="Button" />
+            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="48.0" text="Button" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

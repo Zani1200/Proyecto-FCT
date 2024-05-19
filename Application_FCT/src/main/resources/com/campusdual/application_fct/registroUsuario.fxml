@@ -19,11 +19,13 @@
                </font>
             </Label>
             <Label alignment="CENTER" layoutX="150.0" layoutY="148.0" text="Nombre" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
-            <TextField layoutX="65.0" layoutY="165.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+            <TextField fx:id="txtField_nombre" layoutX="65.0" layoutY="165.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
             <Label alignment="CENTER" layoutX="142.0" layoutY="198.0" text="Contraseña" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
-            <PasswordField layoutX="97.0" layoutY="215.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
-            <Button layoutX="225.0" layoutY="267.0" mnemonicParsing="false" text="Crear Cuenta" />
+            <PasswordField fx:id="password_registro" layoutX="97.0" layoutY="215.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+            <Button layoutX="225.0" layoutY="267.0" mnemonicParsing="false" onAction="#OnAceptarButtonClick" text="Crear Cuenta" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="30.0" />
             <Label layoutX="59.0" layoutY="271.0" />
+            <Button mnemonicParsing="false" onAction="#OnSalirButtonClick" text="Salir" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="30.0" />
+            <Label fx:id="informacion_registro" layoutX="59.0" layoutY="250.0" prefHeight="17.0" prefWidth="220.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="60.0" />
          </children>
       </AnchorPane>
     </children>

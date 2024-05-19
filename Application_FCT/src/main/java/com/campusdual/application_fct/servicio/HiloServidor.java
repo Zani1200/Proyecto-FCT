@@ -38,11 +38,10 @@ public class HiloServidor extends Thread{
                 usuario = new Usuario(id, datosUsuario[1], datosUsuario[2], datosUsuario[3], usuConectado);
 
                 String mensaje = dataInputStream.readUTF();
-                HibernateUtil.agregarMensaje(new Mensaje(usuario, mensaje));
+                //HibernateUtil.agregarMensaje(new Mensaje(usuario, mensaje));
 
-                System.out.println(usuario.getUsu_nombre() + "\n" +
-                        mensaje + "\n" +
-                        mensajeList.toString());
+                dataOutputStream.writeUTF(usuario.getUsu_nombre() + "\n" +
+                        mensaje);
 
             } while (true);
         } catch (IOException e) {

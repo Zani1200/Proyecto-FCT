@@ -1,13 +1,19 @@
 package com.campusdual.application_fct.util;
 
+import com.campusdual.application_fct.controller.RegistroUsuarioController;
 import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Usuario;
+import com.campusdual.application_fct.excepciones.ExisteUsuario;
+import com.campusdual.application_fct.excepciones.NoExisteUsuario;
+import com.campusdual.application_fct.excepciones.UsuarioNoValido;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import javax.persistence.NoResultException;
 
 public class HibernateUtil {
     private static StandardServiceRegistry registro;
@@ -33,12 +39,23 @@ public class HibernateUtil {
         return sessionfactory;
     }
 
-    public static void agregarUsuarios(Usuario usuario){
+    public static void agregarUsuarios(Usuario usuario) throws ExisteUsuario, UsuarioNoValido{
         Session session = HibernateUtil.getSessionfactory().openSession();
-        session.beginTransaction();
-        session.save(usuario);
-        session.getTransaction().commit();
-        session.close();
+        try {
+            if(usuario.getUsu_nombre().equals("") || usuario.getUsu_contrasenha().equals("")){
+                throw new UsuarioNoValido("El usuario o contraseña no son validos");
+            } else {
+                session.createQuery("SELECT j FROM Usuario j WHERE j.usu_nombre = :nombre AND j.usu_contrasenha = :contrasenha", Usuario.class)
+                        .setParameter("nombre", usuario.getUsu_nombre()).setParameter("contrasenha", usuario.getUsu_contrasenha()).getSingleResult();
+                throw new ExisteUsuario("El usuario o contraseña ya existe");
+            }
+        } catch (NoResultException e){
+            session.beginTransaction();
+            session.save(usuario);
+            session.getTransaction().commit();
+            session.close();
+        }
+
     }
 
     public static void agregarMensaje(Mensaje mensaje){

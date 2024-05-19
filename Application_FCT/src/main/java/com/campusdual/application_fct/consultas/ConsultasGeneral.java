@@ -11,4 +11,6 @@ public interface ConsultasGeneral {
     Object validarUsuario(String nombre, String contrasenha) throws UsuarioActivo;
 
     List<Mensaje> getMensajesGrupo();
+
+
 }

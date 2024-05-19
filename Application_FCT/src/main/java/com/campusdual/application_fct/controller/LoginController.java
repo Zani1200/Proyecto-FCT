@@ -36,20 +36,13 @@ public class LoginController extends GenericController{
         try {
             LoginConsultas loginConsultas = new LoginConsultas();
             Object usuario = loginConsultas.validarUsuario(texto_nombre.getText(), texto_contrasenha.getText());
-        } catch (UsuarioActivo | NoExisteUsuario e){
-            System.out.println(e);
-            label_informacion_menu.setText(e.getMessage());
-        }
-        /*
-        if(usuario == null) {
-            label_informacion_menu.setText("El usuario/contraseña no son correctos");
-        }
-        else {
             sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
             ((MenuController) prevMenu).setSocket((Usuario) usuario);
+        } catch (UsuarioActivo | NoExisteUsuario e){
+            label_informacion_menu.setText(e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-         */
     }
 
     public void onRegistrarButtonClick(ActionEvent actionEvent) {

@@ -65,7 +65,9 @@ public class MenuController extends GenericController implements Initializable {
         MenuConsultas menuConsultas = new MenuConsultas();
         mensajesList = menuConsultas.getMensajesGrupo();
         for (int i = 0; i < mensajesList.size(); i++) {
-            mensajeObservableList.add(mensajesList.get(i).getId_usu().getUsu_nombre() + " " + mensajesList.get(i).getMensaje());
+            mensajeObservableList.add(mensajesList.get(i).getId_usu().getUsu_nombre() + "," +
+                    mensajesList.get(i).getMensaje()+"," +
+                    mensajesList.get(i).getId_usu().getUsu_foto());
             view_chat.setItems(mensajeObservableList);
         }
         view_chat.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
@@ -84,14 +86,13 @@ public class MenuController extends GenericController implements Initializable {
             ImageView foto_perfil = new ImageView();
             Image image = new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoEstandar.png");
             foto_perfil.setImage(image);
-            foto_perfil.setFitWidth(50);
-            foto_perfil.setFitHeight(50);
+            foto_perfil.setFitWidth(30);
+            foto_perfil.setFitHeight(30);
             Label label = new Label();
 
             hBox.getChildren().addAll(foto_perfil,label);
             if (item != null) {
-                label.setText(item+" 1"+"\n" +
-                        "FUncionaaaaaaa");
+                label.setText(item);
                 setGraphic(hBox);
             }
         }

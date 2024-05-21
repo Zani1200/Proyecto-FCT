@@ -1,6 +1,4 @@
 #view_chat {
-    -fx-border-color: red;
-    -fx-border-width: 5px;
     -fx-fixed-cell-size: 40px;
 }
 

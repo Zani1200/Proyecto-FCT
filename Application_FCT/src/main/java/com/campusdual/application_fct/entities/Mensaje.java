@@ -8,16 +8,16 @@ public class Mensaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int msj_id;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usu")
-    private Usuario id_usu;
+    @JoinColumn(name = "id_part")
+    private Participantes id_part;
     @Column
     private String mensaje;
 
     public Mensaje() {
     }
 
-    public Mensaje(Usuario id_usu, String mensaje) {
-        this.id_usu = id_usu;
+    public Mensaje(Participantes id_part, String mensaje) {
+        this.id_part = id_part;
         this.mensaje = mensaje;
     }
 
@@ -29,12 +29,12 @@ public class Mensaje {
         this.msj_id = msj_id;
     }
 
-    public Usuario getId_usu() {
-        return id_usu;
+    public Participantes getId_part() {
+        return id_part;
     }
 
-    public void setId_usu(Usuario id_usu) {
-        this.id_usu = id_usu;
+    public void setId_part(Participantes id_part) {
+        this.id_part = id_part;
     }
 
     public String getMensaje() {

@@ -29,6 +29,8 @@ import java.util.TimerTask;
 
 public class MenuController extends GenericController implements Initializable {
     @FXML
+    private ListView list_chats;
+    @FXML
     private Button boton_crear_grupo;
     @FXML
     private ListView<String> view_chat = new ListView<>();
@@ -43,32 +45,15 @@ public class MenuController extends GenericController implements Initializable {
     private Usuario usuario;
     private List<Mensaje> mensajesList;
 
-    Thread thread = new Thread() {
-        @Override
-        public void run() {
-            try {
-                do {
-                    String mensaje = dataInputStream.readUTF();
-                    Platform.runLater(() -> {
-                        mensajeObservableList.add(mensaje);
-                        view_chat.setItems(mensajeObservableList);
-                    });
-                }while (true);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    };
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MenuConsultas menuConsultas = new MenuConsultas();
         mensajesList = menuConsultas.getMensajesGrupo();
         for (int i = 0; i < mensajesList.size(); i++) {
-            mensajeObservableList.add(mensajesList.get(i).getId_usu().getUsu_nombre() + "," +
-                    mensajesList.get(i).getMensaje()+"," +
-                    mensajesList.get(i).getId_usu().getUsu_foto());
-            view_chat.setItems(mensajeObservableList);
+            //mensajeObservableList.add(mensajesList.get(i).getId_usu().getUsu_nombre() + "," +
+            //       mensajesList.get(i).getMensaje()+"," +
+            //       mensajesList.get(i).getId_usu().getUsu_foto());
+           // view_chat.setItems(mensajeObservableList);
         }
         view_chat.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
@@ -78,21 +63,27 @@ public class MenuController extends GenericController implements Initializable {
         });
     }
 
+    public void OnCrearChatButtonClick(ActionEvent actionEvent) {
+        
+    }
+
     static class modificarCell extends ListCell<String> {
         @Override
         public void updateItem(String item, boolean empty){
             super.updateItem(item, empty);
             HBox hBox = new HBox();
             ImageView foto_perfil = new ImageView();
-            Image image = new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoEstandar.png");
-            foto_perfil.setImage(image);
-            foto_perfil.setFitWidth(30);
-            foto_perfil.setFitHeight(30);
             Label label = new Label();
 
             hBox.getChildren().addAll(foto_perfil,label);
             if (item != null) {
-                label.setText(item);
+                String[] informacionMensaje = item.split(",");
+                Image image = new Image(informacionMensaje[2]);
+                foto_perfil.setImage(image);
+                foto_perfil.setFitWidth(30);
+                foto_perfil.setFitHeight(30);
+                label.setText(informacionMensaje[0]+"\n" +
+                        informacionMensaje[1]);
                 setGraphic(hBox);
             }
         }
@@ -101,14 +92,29 @@ public class MenuController extends GenericController implements Initializable {
     public void onEnviarButtonClick(ActionEvent actionEvent) throws IOException {
         dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_contrasenha()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo());
         dataOutputStream.writeUTF(texto_enviado.getText());
-
-
     }
+
     public void setSocket(Usuario usuario) throws IOException {
         this.usuario = usuario;
         cliente = new Socket("localhost", 6000);
         dataInputStream = new DataInputStream(cliente.getInputStream());
         dataOutputStream = new DataOutputStream(cliente.getOutputStream());
-        thread.start();
+        Thread actualizadorChat = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    do {
+                        String mensaje = dataInputStream.readUTF();
+                        Platform.runLater(() -> {
+                            mensajeObservableList.add(mensaje);
+                            view_chat.setItems(mensajeObservableList);
+                        });
+                    }while (true);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+        actualizadorChat.start();
     }
 }

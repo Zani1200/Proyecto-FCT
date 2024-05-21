@@ -60,7 +60,7 @@ public class RegistroUsuarioController extends GenericController implements Init
 
     public void OnAceptarButtonClick(ActionEvent actionEvent){
         try {
-            HibernateUtil.agregarUsuarios(new Usuario(txtField_nombre.getText(), password_registro.getText(), "", 0));
+            HibernateUtil.agregarUsuarios(new Usuario(txtField_nombre.getText(), password_registro.getText(), foto_perfil.getImage().getUrl(), 0));
             sceneHandler.changeToScene(SceneHandler.LOGIN_SCENE);
         } catch (ExisteUsuario | UsuarioNoValido e){
             informacion_registro.setText(e.getMessage());

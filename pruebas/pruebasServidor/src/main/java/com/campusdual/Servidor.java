@@ -1,20 +1,19 @@
-package com.campusdual.application_fct.servicio;
+package com.campusdual;
 
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.*;
 
 public class Servidor {
 
     public static void main(String[] args) throws IOException {
-        ServerSocket servidor = new ServerSocket(6000);
+        ServerSocket servidor = new ServerSocket(6001);
         System.out.println("-------------SERVIDOR INICIADO-------------");
         do{
             Socket usuarioSocket = new Socket();
             usuarioSocket = servidor.accept();
-            HiloServidor hiloServidor = new HiloServidor(usuarioSocket);
+            HiloServidor hiloServidor = new HiloServidor(usuarioSocket, servidor);
             hiloServidor.start();
         } while (true);
     }

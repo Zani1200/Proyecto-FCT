@@ -20,7 +20,7 @@ public class Usuario {
     @Column
     private int usu_activo;
     @OneToMany(mappedBy = "id_usu", fetch = FetchType.LAZY)
-    public List<Mensaje> usu_mensajes = new ArrayList<>();
+    public List<Participantes> usu_part = new ArrayList<>();
 
     public Usuario() {
     }
@@ -84,12 +84,12 @@ public class Usuario {
         this.usu_activo = usu_activo;
     }
 
-    public List<Mensaje> getUsu_mensajes() {
-        return usu_mensajes;
+    public List<Participantes> getUsu_part() {
+        return usu_part;
     }
 
-    public void setUsu_mensajes(List<Mensaje> usu_mensajes) {
-        this.usu_mensajes = usu_mensajes;
+    public void setUsu_part(List<Participantes> usu_part) {
+        this.usu_part = usu_part;
     }
 
     @Override

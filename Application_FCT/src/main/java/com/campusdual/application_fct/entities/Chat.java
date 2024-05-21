@@ -1,6 +1,8 @@
 package com.campusdual.application_fct.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Chat {
@@ -11,6 +13,8 @@ public class Chat {
     private int chat_port;
     @Column
     private String chat_host;
+    @OneToMany(mappedBy = "id_chat", fetch = FetchType.LAZY)
+    public List<Participantes> chat_part = new ArrayList<>();
 
     public Chat(int chat_id, int chat_port, String chat_host) {
         this.chat_id = chat_id;
@@ -40,5 +44,13 @@ public class Chat {
 
     public void setChat_host(String chat_host) {
         this.chat_host = chat_host;
+    }
+
+    public List<Participantes> getChat_part() {
+        return chat_part;
+    }
+
+    public void setChat_part(List<Participantes> chat_part) {
+        this.chat_part = chat_part;
     }
 }

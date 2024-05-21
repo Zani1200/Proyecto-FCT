@@ -15,7 +15,6 @@ import java.util.HashMap;
 
 
 public class HelloApplication extends Application {
-    public static String hola = "hola";
     @Override
     public void start(Stage stage) throws Exception {
         Session session = HibernateUtil.getSessionfactory().openSession();
@@ -23,19 +22,23 @@ public class HelloApplication extends Application {
         FXMLLoader loginLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
         FXMLLoader registroUsuarioLoader = new FXMLLoader(HelloApplication.class.getResource("registroUsuario.fxml"));
         FXMLLoader menuLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
+        FXMLLoader registroChatLoader = new FXMLLoader(HelloApplication.class.getResource("registroChat.fxml"));
 
         Parent loginPane = loginLoader.load();
         Parent registroUsuariPane = registroUsuarioLoader.load();
         Parent menuPane = menuLoader.load();
+        Parent registroChatPane = registroChatLoader.load();
 
         Scene loginScene = new Scene(loginPane, 600,400);
         Scene registroUsuarioScene = new Scene(registroUsuariPane, 600,400);
         Scene menuScene = new Scene(menuPane, 600,400);
+        Scene registroChatScene = new Scene(registroChatPane,600,400);
 
         SceneHandler sceneHandler = new SceneHandler(stage);
         sceneHandler.addScene(SceneHandler.LOGIN_SCENE,loginScene);
         sceneHandler.addScene(SceneHandler.REGISTRO_USUARIO_SCENE,registroUsuarioScene);
         sceneHandler.addScene(SceneHandler.MENU_SCENE,menuScene);
+        sceneHandler.addScene(SceneHandler.REGISTRO_CHAT_SCENE,registroChatScene);
 
         HashMap<String, GenericController> controllerHashMap = new HashMap<>();
         GenericController loginController = loginLoader.getController();
@@ -45,6 +48,8 @@ public class HelloApplication extends Application {
         GenericController menuController = menuLoader.getController();
         loginController.setPrevMenu(menuController);
         controllerHashMap.put(SceneHandler.MENU_SCENE, menuController);
+        GenericController registroChatController = registroChatLoader.getController();
+        controllerHashMap.put(SceneHandler.REGISTRO_CHAT_SCENE, registroChatController);
         controllerHashMap.values().forEach(genericController -> genericController.setSceneHandler(sceneHandler));
 
 

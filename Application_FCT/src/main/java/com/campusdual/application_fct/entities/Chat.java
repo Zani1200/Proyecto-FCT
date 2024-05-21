@@ -12,14 +12,24 @@ public class Chat {
     @Column
     private int chat_port;
     @Column
-    private String chat_host;
+    private String chat_nombre;
+    @Column
+    private String chat_foto;
     @OneToMany(mappedBy = "id_chat", fetch = FetchType.LAZY)
     public List<Participantes> chat_part = new ArrayList<>();
 
-    public Chat(int chat_id, int chat_port, String chat_host) {
-        this.chat_id = chat_id;
+    public Chat() {
+    }
+
+    public Chat(int chat_port, String chat_nombre, String chat_foto) {
         this.chat_port = chat_port;
-        this.chat_host = chat_host;
+        this.chat_nombre = chat_nombre;
+        this.chat_foto = chat_foto;
+    }
+
+    public Chat(String chat_nombre, String chat_foto) {
+        this.chat_nombre = chat_nombre;
+        this.chat_foto = chat_foto;
     }
 
     public int getChat_id() {
@@ -38,12 +48,20 @@ public class Chat {
         this.chat_port = chat_port;
     }
 
-    public String getChat_host() {
-        return chat_host;
+    public String getChat_nombre() {
+        return chat_nombre;
     }
 
-    public void setChat_host(String chat_host) {
-        this.chat_host = chat_host;
+    public void setChat_nombre(String chat_nombre) {
+        this.chat_nombre = chat_nombre;
+    }
+
+    public String getChat_foto() {
+        return chat_foto;
+    }
+
+    public void setChat_foto(String chat_foto) {
+        this.chat_foto = chat_foto;
     }
 
     public List<Participantes> getChat_part() {

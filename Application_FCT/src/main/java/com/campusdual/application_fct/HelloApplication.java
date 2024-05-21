@@ -49,6 +49,7 @@ public class HelloApplication extends Application {
         loginController.setPrevMenu(menuController);
         controllerHashMap.put(SceneHandler.MENU_SCENE, menuController);
         GenericController registroChatController = registroChatLoader.getController();
+        registroChatController.setPrevMenu(menuController);
         controllerHashMap.put(SceneHandler.REGISTRO_CHAT_SCENE, registroChatController);
         controllerHashMap.values().forEach(genericController -> genericController.setSceneHandler(sceneHandler));
 

@@ -1,6 +1,7 @@
 package com.campusdual.application_fct.util;
 
 import com.campusdual.application_fct.controller.RegistroUsuarioController;
+import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.excepciones.ExisteUsuario;
@@ -16,6 +17,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import javax.persistence.NoResultException;
 
 public class HibernateUtil {
+    private static int port = 6001;
     private static StandardServiceRegistry registro;
     private static SessionFactory sessionfactory;
 
@@ -56,6 +58,17 @@ public class HibernateUtil {
             session.close();
         }
 
+    }
+
+    public static Chat agregarChat(Chat chat) {
+        Session session = HibernateUtil.getSessionfactory().openSession();
+        session.beginTransaction();
+        Chat nuevoChat = new Chat(port,chat.getChat_nombre(), chat.getChat_foto());
+        session.save(nuevoChat);
+        session.getTransaction().commit();
+        session.close();
+        port++;
+        return nuevoChat;
     }
 
     public static void agregarMensaje(Mensaje mensaje){

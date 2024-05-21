@@ -32,17 +32,18 @@ public class HiloServidor extends Thread{
         try {
             do {
                 System.out.println(socketCliente.toString());
-                String[] datosUsuario = dataInputStream.readUTF().split(",");
-                int id = Integer.parseInt(datosUsuario[0]);
-                int usuConectado = Integer.parseInt((datosUsuario[4]));
-                usuario = new Usuario(id, datosUsuario[1], datosUsuario[2], datosUsuario[3], usuConectado);
 
-                String mensaje = dataInputStream.readUTF();
-                //HibernateUtil.agregarMensaje(new Mensaje(usuario, mensaje));
+                    String[] datosUsuario = dataInputStream.readUTF().split(",");
+                    int id = Integer.parseInt(datosUsuario[0]);
+                    int usuConectado = Integer.parseInt((datosUsuario[4]));
+                    usuario = new Usuario(id, datosUsuario[1], datosUsuario[2], datosUsuario[3], usuConectado);
 
-                dataOutputStream.writeUTF(usuario.getUsu_nombre()+","+
-                        mensaje+"," +
-                        usuario.getUsu_foto());
+                    String mensaje = dataInputStream.readUTF();
+                    //HibernateUtil.agregarMensaje(new Mensaje(usuario, mensaje));
+
+                    dataOutputStream.writeUTF(usuario.getUsu_nombre() + "," +
+                            mensaje + "," +
+                            usuario.getUsu_foto());
 
             } while (true);
         } catch (IOException e) {

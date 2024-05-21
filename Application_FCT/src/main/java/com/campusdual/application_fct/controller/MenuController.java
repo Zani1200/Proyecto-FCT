@@ -1,9 +1,11 @@
 package com.campusdual.application_fct.controller;
 
 import com.campusdual.application_fct.consultas.MenuConsultas;
+import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Usuario;
 
+import com.campusdual.application_fct.util.SceneHandler;
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
@@ -29,7 +31,7 @@ import java.util.TimerTask;
 
 public class MenuController extends GenericController implements Initializable {
     @FXML
-    private ListView list_chats;
+    private ListView<String> list_chats = new ListView<>();
     @FXML
     private Button boton_crear_grupo;
     @FXML
@@ -39,6 +41,7 @@ public class MenuController extends GenericController implements Initializable {
     @FXML
     private Button boton_enviar;
     public ObservableList<String> mensajeObservableList = FXCollections.observableArrayList();
+    public ObservableList<String> chatObservableList = FXCollections.observableArrayList();
     private Socket cliente;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
@@ -62,11 +65,6 @@ public class MenuController extends GenericController implements Initializable {
             }
         });
     }
-
-    public void OnCrearChatButtonClick(ActionEvent actionEvent) {
-        
-    }
-
     static class modificarCell extends ListCell<String> {
         @Override
         public void updateItem(String item, boolean empty){
@@ -87,6 +85,10 @@ public class MenuController extends GenericController implements Initializable {
                 setGraphic(hBox);
             }
         }
+    }
+
+    public void OnCrearChatButtonClick(ActionEvent actionEvent) {
+        sceneHandler.changeToScene(SceneHandler.REGISTRO_CHAT_SCENE);
     }
 
     public void onEnviarButtonClick(ActionEvent actionEvent) throws IOException {
@@ -116,5 +118,38 @@ public class MenuController extends GenericController implements Initializable {
             }
         };
         actualizadorChat.start();
+    }
+
+    public void addList_chats(Chat nuevoChat) throws IOException {
+        chatObservableList.add(nuevoChat.getChat_nombre()+","+nuevoChat.getChat_foto());
+        list_chats.setItems(chatObservableList);
+        list_chats.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+
+            @Override
+            public ListCell<String> call(ListView<String> stringListView) {
+                return new modificacionTablaChat();
+            }
+
+            static class modificacionTablaChat extends ListCell<String> {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    HBox hBox = new HBox();
+                    ImageView foto_perfil = new ImageView();
+                    Label label = new Label();
+
+                    hBox.getChildren().addAll(foto_perfil, label);
+                    if (item != null) {
+                        String[] informacionChat = item.split(",");
+                        Image image = new Image(informacionChat[1]);
+                        foto_perfil.setImage(image);
+                        foto_perfil.setFitWidth(30);
+                        foto_perfil.setFitHeight(30);
+                        label.setText(informacionChat[0]);
+                        setGraphic(hBox);
+                    }
+                }
+            }
+        });
     }
 }

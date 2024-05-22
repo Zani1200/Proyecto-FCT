@@ -1,9 +1,10 @@
 package com.campusdual.application_fct.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Mensaje {
+public class Mensaje implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int msj_id;

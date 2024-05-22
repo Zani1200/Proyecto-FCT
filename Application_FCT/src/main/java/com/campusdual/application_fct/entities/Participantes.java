@@ -1,11 +1,12 @@
 package com.campusdual.application_fct.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Participantes {
+public class Participantes implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int part_id;
@@ -21,6 +22,20 @@ public class Participantes {
     public Participantes(Usuario id_usu, Chat id_chat) {
         this.id_usu = id_usu;
         this.id_chat = id_chat;
+    }
+
+    public Participantes(int part_id, Usuario id_usu, Chat id_chat) {
+        this.part_id = part_id;
+        this.id_usu = id_usu;
+        this.id_chat = id_chat;
+    }
+
+    public Participantes(int part_id) {
+        this.part_id = part_id;
+    }
+
+    public Participantes(Usuario id_usu) {
+        this.id_usu = id_usu;
     }
 
     public int getPart_id() {

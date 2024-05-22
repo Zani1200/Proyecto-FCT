@@ -3,11 +3,12 @@ package com.campusdual.application_fct.controller;
 import com.campusdual.application_fct.consultas.MenuConsultas;
 import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
+import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
 
+import com.campusdual.application_fct.util.HibernateUtil;
 import com.campusdual.application_fct.util.SceneHandler;
 import javafx.application.Platform;
-import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,15 +20,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
+import javax.persistence.PersistenceException;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class MenuController extends GenericController implements Initializable {
     @FXML
@@ -47,55 +46,33 @@ public class MenuController extends GenericController implements Initializable {
     private DataOutputStream dataOutputStream;
     private Usuario usuario;
     private List<Mensaje> mensajesList;
-
+    private HashMap<Integer,Chat> chatHashMap = new HashMap<>();
+    private String datosChat;
+    private Timer timer = new Timer();
+    TimerTask timerTask = new TimerTask() {
+        String chatAnterior;
+        @Override
+        public void run() {
+            datosChat = list_chats.getSelectionModel().getSelectedItem();
+            if(datosChat != null){
+                String idChat = datosChat.split(",")[2];
+                if(!(idChat.equals(chatAnterior))) {
+                    chatAnterior = idChat;
+                    Platform.runLater(() -> {
+                        for(int i=mensajeObservableList.size();i>0;i--){
+                            mensajeObservableList.remove(mensajeObservableList.get(i-1));
+                        }
+                        view_chat.setItems(mensajeObservableList);
+                        getMensajesView(Integer.parseInt(chatAnterior));
+                    });
+                }
+            }
+        }
+    };
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        MenuConsultas menuConsultas = new MenuConsultas();
-        mensajesList = menuConsultas.getMensajesGrupo();
-        for (int i = 0; i < mensajesList.size(); i++) {
-            //mensajeObservableList.add(mensajesList.get(i).getId_usu().getUsu_nombre() + "," +
-            //       mensajesList.get(i).getMensaje()+"," +
-            //       mensajesList.get(i).getId_usu().getUsu_foto());
-           // view_chat.setItems(mensajeObservableList);
-        }
-        view_chat.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
-            @Override
-            public ListCell<String> call(ListView<String> stringListView) {
-                return new modificarCell();
-            }
-        });
+        timer.schedule(timerTask,0,1000);
     }
-    static class modificarCell extends ListCell<String> {
-        @Override
-        public void updateItem(String item, boolean empty){
-            super.updateItem(item, empty);
-            HBox hBox = new HBox();
-            ImageView foto_perfil = new ImageView();
-            Label label = new Label();
-
-            hBox.getChildren().addAll(foto_perfil,label);
-            if (item != null) {
-                String[] informacionMensaje = item.split(",");
-                Image image = new Image(informacionMensaje[2]);
-                foto_perfil.setImage(image);
-                foto_perfil.setFitWidth(30);
-                foto_perfil.setFitHeight(30);
-                label.setText(informacionMensaje[0]+"\n" +
-                        informacionMensaje[1]);
-                setGraphic(hBox);
-            }
-        }
-    }
-
-    public void OnCrearChatButtonClick(ActionEvent actionEvent) {
-        sceneHandler.changeToScene(SceneHandler.REGISTRO_CHAT_SCENE);
-    }
-
-    public void onEnviarButtonClick(ActionEvent actionEvent) throws IOException {
-        dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_contrasenha()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo());
-        dataOutputStream.writeUTF(texto_enviado.getText());
-    }
-
     public void setSocket(Usuario usuario) throws IOException {
         this.usuario = usuario;
         cliente = new Socket("localhost", 6000);
@@ -120,8 +97,48 @@ public class MenuController extends GenericController implements Initializable {
         actualizadorChat.start();
     }
 
+    public void getMensajesView(Integer idChat) {
+        MenuConsultas menuConsultas = new MenuConsultas();
+        mensajesList = menuConsultas.getMensajesGrupo(idChat);
+        for (int i = 0; i < mensajesList.size(); i++) {
+            mensajeObservableList.add(mensajesList.get(i).getId_part().getId_usu().getUsu_nombre() + "," +
+                   mensajesList.get(i).getMensaje()+"," +
+                   mensajesList.get(i).getId_part().getId_usu().getUsu_foto());
+             view_chat.setItems(mensajeObservableList);
+        }
+        view_chat.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> stringListView) {
+                return new modificarCell();
+            }
+
+            static class modificarCell extends ListCell<String> {
+                @Override
+                public void updateItem(String item, boolean empty){
+                    super.updateItem(item, empty);
+                    HBox hBox = new HBox();
+                    ImageView foto_perfil = new ImageView();
+                    Label label = new Label();
+
+                    hBox.getChildren().addAll(foto_perfil,label);
+                    if (item != null) {
+                        String[] informacionMensaje = item.split(",");
+                        Image image = new Image(informacionMensaje[2]);
+                        foto_perfil.setImage(image);
+                        foto_perfil.setFitWidth(30);
+                        foto_perfil.setFitHeight(30);
+                        label.setText(informacionMensaje[0]+"\n" +
+                                informacionMensaje[1]);
+                        setGraphic(hBox);
+                    }
+                }
+            }
+        });
+    }
+
     public void addList_chats(Chat nuevoChat) throws IOException {
-        chatObservableList.add(nuevoChat.getChat_nombre()+","+nuevoChat.getChat_foto());
+        chatHashMap.put(nuevoChat.getChat_id(),new Chat(nuevoChat.getChat_id(),nuevoChat.getChat_nombre(),nuevoChat.getChat_foto()));
+        chatObservableList.add(nuevoChat.getChat_nombre()+","+nuevoChat.getChat_foto()+","+nuevoChat.getChat_id());
         list_chats.setItems(chatObservableList);
         list_chats.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
 
@@ -151,5 +168,21 @@ public class MenuController extends GenericController implements Initializable {
                 }
             }
         });
+        Participantes nuevoParticipante = new Participantes(new Usuario(usuario.getUsu_id(),usuario.getUsu_nombre(),usuario.getUsu_foto()),nuevoChat);
+        HibernateUtil.agregarParticipantes(nuevoParticipante);
+        HibernateUtil.agregarMensaje(new Mensaje(nuevoParticipante,"El usuario "+usuario.getUsu_nombre()+" se ha unido"));
     }
+
+    public void OnCrearChatButtonClick(ActionEvent actionEvent) {
+        sceneHandler.changeToScene(SceneHandler.REGISTRO_CHAT_SCENE);
+    }
+
+    public void onEnviarButtonClick(ActionEvent actionEvent) throws IOException {
+        Chat chatActual = chatHashMap.get(Integer.parseInt(datosChat.split(",")[2]));
+        dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_contrasenha()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo()
+        +","+(chatActual.getChat_id())+","+chatActual.getChat_nombre()+","+chatActual.getChat_foto());
+        dataOutputStream.writeUTF(texto_enviado.getText());
+    }
+
+
 }

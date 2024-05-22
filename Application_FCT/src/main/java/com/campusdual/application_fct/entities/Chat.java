@@ -1,16 +1,15 @@
 package com.campusdual.application_fct.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Chat {
+public class Chat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int chat_id;
-    @Column
-    private int chat_port;
     @Column
     private String chat_nombre;
     @Column
@@ -21,8 +20,8 @@ public class Chat {
     public Chat() {
     }
 
-    public Chat(int chat_port, String chat_nombre, String chat_foto) {
-        this.chat_port = chat_port;
+    public Chat(int chat_id, String chat_nombre, String chat_foto) {
+        this.chat_id = chat_id;
         this.chat_nombre = chat_nombre;
         this.chat_foto = chat_foto;
     }
@@ -38,14 +37,6 @@ public class Chat {
 
     public void setChat_id(int chat_id) {
         this.chat_id = chat_id;
-    }
-
-    public int getChat_port() {
-        return chat_port;
-    }
-
-    public void setChat_port(int chat_port) {
-        this.chat_port = chat_port;
     }
 
     public String getChat_nombre() {
@@ -70,5 +61,15 @@ public class Chat {
 
     public void setChat_part(List<Participantes> chat_part) {
         this.chat_part = chat_part;
+    }
+
+    @Override
+    public String toString() {
+        return "Chat{" +
+                "chat_id=" + chat_id +
+                ", chat_nombre='" + chat_nombre + '\'' +
+                ", chat_foto='" + chat_foto + '\'' +
+                ", chat_part=" + chat_part +
+                '}';
     }
 }

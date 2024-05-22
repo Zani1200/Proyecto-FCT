@@ -1,6 +1,8 @@
 package com.campusdual.application_fct.consultas;
 
+import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
+import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.excepciones.NoExisteUsuario;
 import com.campusdual.application_fct.excepciones.UsuarioActivo;
@@ -42,9 +44,15 @@ public class LoginConsultas implements ConsultasGeneral{
         }
     }
 
-
     @Override
-    public List<Mensaje> getMensajesGrupo() {
+    public List<Mensaje> getMensajesGrupo(Integer idChat) {
         return null;
     }
+
+    @Override
+    public Integer getParticipante(Usuario usuario, Chat chat) {
+        return null;
+    }
+
+
 }

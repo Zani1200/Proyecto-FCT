@@ -2,12 +2,13 @@ package com.campusdual.application_fct.entities;
 
 import javax.persistence.*;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int usu_id;
@@ -23,6 +24,10 @@ public class Usuario {
     public List<Participantes> usu_part = new ArrayList<>();
 
     public Usuario() {
+    }
+
+    public Usuario(int usu_id) {
+        this.usu_id = usu_id;
     }
 
     public Usuario(String usu_nombre, String usu_contrasenha, String usu_foto, int usu_activo) {

@@ -1,6 +1,9 @@
 package com.campusdual.application_fct.servicio;
 
+import com.campusdual.application_fct.consultas.RegistroUsuarioConsultas;
+import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
+import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.util.HibernateUtil;
 import org.hibernate.Session;
@@ -32,19 +35,20 @@ public class HiloServidor extends Thread{
         try {
             do {
                 System.out.println(socketCliente.toString());
+                String[] datosUsuario = dataInputStream.readUTF().split(",");
+                int id = Integer.parseInt(datosUsuario[0]);
+                int usuConectado = Integer.parseInt((datosUsuario[4]));
+                usuario = new Usuario(id, datosUsuario[1], datosUsuario[2], datosUsuario[3], usuConectado);
 
-                    String[] datosUsuario = dataInputStream.readUTF().split(",");
-                    int id = Integer.parseInt(datosUsuario[0]);
-                    int usuConectado = Integer.parseInt((datosUsuario[4]));
-                    usuario = new Usuario(id, datosUsuario[1], datosUsuario[2], datosUsuario[3], usuConectado);
+                String mensaje = dataInputStream.readUTF();
+                RegistroUsuarioConsultas registroUsuarioConsultas = new RegistroUsuarioConsultas();
+                Integer participanteId = registroUsuarioConsultas.getParticipante(usuario,new Chat(Integer.parseInt(datosUsuario[5]),datosUsuario[6],datosUsuario[7]));
+                Participantes participante = new Participantes(participanteId);
+                HibernateUtil.agregarMensaje(new Mensaje(participante, mensaje));
 
-                    String mensaje = dataInputStream.readUTF();
-                    //HibernateUtil.agregarMensaje(new Mensaje(usuario, mensaje));
-
-                    dataOutputStream.writeUTF(usuario.getUsu_nombre() + "," +
-                            mensaje + "," +
-                            usuario.getUsu_foto());
-
+                dataOutputStream.writeUTF(usuario.getUsu_nombre() + "," +
+                        mensaje + "," +
+                        usuario.getUsu_foto());
             } while (true);
         } catch (IOException e) {
             throw new RuntimeException(e);

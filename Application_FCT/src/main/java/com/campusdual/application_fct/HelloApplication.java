@@ -21,24 +21,28 @@ public class HelloApplication extends Application {
 
         FXMLLoader loginLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
         FXMLLoader registroUsuarioLoader = new FXMLLoader(HelloApplication.class.getResource("registroUsuario.fxml"));
-        FXMLLoader menuLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
+        FXMLLoader menuLoader = new FXMLLoader(HelloApplication.class.getResource("menus.fxml"));
         FXMLLoader registroChatLoader = new FXMLLoader(HelloApplication.class.getResource("registroChat.fxml"));
+        FXMLLoader unirseChatLoader = new FXMLLoader(HelloApplication.class.getResource("unirseChat.fxml"));
 
         Parent loginPane = loginLoader.load();
         Parent registroUsuariPane = registroUsuarioLoader.load();
         Parent menuPane = menuLoader.load();
         Parent registroChatPane = registroChatLoader.load();
+        Parent unirseChatPane = unirseChatLoader.load();
 
         Scene loginScene = new Scene(loginPane, 600,400);
         Scene registroUsuarioScene = new Scene(registroUsuariPane, 600,400);
         Scene menuScene = new Scene(menuPane, 600,400);
         Scene registroChatScene = new Scene(registroChatPane,600,400);
+        Scene unirseChatScene = new Scene(unirseChatPane,300,300);
 
         SceneHandler sceneHandler = new SceneHandler(stage);
         sceneHandler.addScene(SceneHandler.LOGIN_SCENE,loginScene);
         sceneHandler.addScene(SceneHandler.REGISTRO_USUARIO_SCENE,registroUsuarioScene);
         sceneHandler.addScene(SceneHandler.MENU_SCENE,menuScene);
         sceneHandler.addScene(SceneHandler.REGISTRO_CHAT_SCENE,registroChatScene);
+        sceneHandler.addScene(SceneHandler.UNIRSE_CHAT_SCENE,unirseChatScene);
 
         HashMap<String, GenericController> controllerHashMap = new HashMap<>();
         GenericController loginController = loginLoader.getController();
@@ -51,6 +55,9 @@ public class HelloApplication extends Application {
         GenericController registroChatController = registroChatLoader.getController();
         registroChatController.setPrevMenu(menuController);
         controllerHashMap.put(SceneHandler.REGISTRO_CHAT_SCENE, registroChatController);
+        GenericController unirseChatController = unirseChatLoader.getController();
+        unirseChatController.setPrevMenu(menuController);
+        controllerHashMap.put(SceneHandler.UNIRSE_CHAT_SCENE, unirseChatController);
         controllerHashMap.values().forEach(genericController -> genericController.setSceneHandler(sceneHandler));
 
 

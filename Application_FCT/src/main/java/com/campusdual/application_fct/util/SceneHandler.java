@@ -10,6 +10,7 @@ public class SceneHandler {
     public static final String REGISTRO_USUARIO_SCENE = "registroUsuarioScene";
     public static final String MENU_SCENE = "menuScene";
     public static final String REGISTRO_CHAT_SCENE = "registroChatScene";
+    public static final String UNIRSE_CHAT_SCENE = "unirseChatScene";
     private HashMap<String, Scene> sceneHashMap;
     private Stage stage;
 

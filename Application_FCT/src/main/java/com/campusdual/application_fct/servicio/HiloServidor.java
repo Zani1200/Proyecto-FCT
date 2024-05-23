@@ -1,21 +1,18 @@
 package com.campusdual.application_fct.servicio;
 
-import com.campusdual.application_fct.consultas.RegistroUsuarioConsultas;
+import com.campusdual.application_fct.consultas.ServidorConsultas;
 import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.util.HibernateUtil;
-import org.hibernate.Session;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class HiloServidor extends Thread{
     private Socket socketCliente;
@@ -41,7 +38,7 @@ public class HiloServidor extends Thread{
                 usuario = new Usuario(id, datosUsuario[1], datosUsuario[2], datosUsuario[3], usuConectado);
 
                 String mensaje = dataInputStream.readUTF();
-                RegistroUsuarioConsultas registroUsuarioConsultas = new RegistroUsuarioConsultas();
+                ServidorConsultas registroUsuarioConsultas = new ServidorConsultas();
                 Integer participanteId = registroUsuarioConsultas.getParticipante(usuario,new Chat(Integer.parseInt(datosUsuario[5]),datosUsuario[6],datosUsuario[7]));
                 Participantes participante = new Participantes(participanteId);
                 HibernateUtil.agregarMensaje(new Mensaje(participante, mensaje));
@@ -49,6 +46,7 @@ public class HiloServidor extends Thread{
                 dataOutputStream.writeUTF(usuario.getUsu_nombre() + "," +
                         mensaje + "," +
                         usuario.getUsu_foto());
+
             } while (true);
         } catch (IOException e) {
             throw new RuntimeException(e);

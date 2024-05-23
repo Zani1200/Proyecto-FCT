@@ -14,15 +14,16 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 public class LoginConsultas implements ConsultasGeneral{
+    Session session = HibernateUtil.session;
     @Override
     public Object validarUsuario(String nombre, String contrasenha) throws UsuarioActivo, NoResultException {
         Usuario usuario = null;
-        Session session = HibernateUtil.getSessionfactory().openSession();
         try {
             usuario = session.createQuery("SELECT j FROM Usuario j WHERE j.usu_nombre = :nombre AND j.usu_contrasenha = :contrasenha", Usuario.class)
                     .setParameter("nombre", nombre).setParameter("contrasenha", contrasenha).getSingleResult();
         } catch (NoResultException e){
             throw new NoExisteUsuario("El usuario o contraseña incorrectos");
+
         }
         Integer usuarioActivo = (Integer) session.createQuery("SELECT j.usu_activo " +
                 "FROM Usuario j " +
@@ -36,7 +37,6 @@ public class LoginConsultas implements ConsultasGeneral{
             int i = actualizarActividad.executeUpdate();
             System.out.println("Se ha realizado "+i+" cambio/s");
             session.getTransaction().commit();
-            session.close();
             System.out.println(usuario);
             return usuario;
         } else {

@@ -2,15 +2,14 @@ package com.campusdual.application_fct.consultas;
 
 import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
-import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.util.HibernateUtil;
 import org.hibernate.Session;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class RegistroUsuarioConsultas implements ConsultasGeneral{
+public class ServidorConsultas implements ConsultasGeneral{
+    Session session = HibernateUtil.session;
     @Override
     public Usuario validarUsuario(String nombre, String contrasenha) {
         return null;
@@ -23,7 +22,6 @@ public class RegistroUsuarioConsultas implements ConsultasGeneral{
 
     @Override
     public Integer getParticipante(Usuario usuario, Chat chat) {
-        Session session = HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
         System.out.println(usuario.getUsu_id()+" "+(chat.getChat_id()));
         Integer participantesId = session.createQuery("SELECT p.part_id FROM Participantes p " +
@@ -32,6 +30,7 @@ public class RegistroUsuarioConsultas implements ConsultasGeneral{
                 "WHERE u.usu_id = :usu_id AND c.chat_id = :chat_id", Integer.class).setParameter("usu_id",usuario.getUsu_id())
                 .setParameter("chat_id",(chat.getChat_id())).getSingleResult();
         System.out.println(participantesId);
+        session.getTransaction().commit();
         return participantesId;
     }
 

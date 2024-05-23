@@ -11,7 +11,7 @@
       <VBox layoutY="3.0" prefHeight="400.0" prefWidth="48.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="552.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="btn_crearChat" mnemonicParsing="false" onAction="#OnCrearChatButtonClick" prefHeight="42.0" prefWidth="48.0" text="CHAT" />
-            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="48.0" text="Button" />
+            <Button mnemonicParsing="false" onAction="#unirseChatOnClick" prefHeight="38.0" prefWidth="48.0" text="Button" />
          </children>
       </VBox>
       <ListView fx:id="list_chats" layoutX="49.0" prefHeight="400.0" prefWidth="128.0" />

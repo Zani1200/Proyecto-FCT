@@ -69,7 +69,6 @@ public class Chat implements Serializable {
                 "chat_id=" + chat_id +
                 ", chat_nombre='" + chat_nombre + '\'' +
                 ", chat_foto='" + chat_foto + '\'' +
-                ", chat_part=" + chat_part +
                 '}';
     }
 }

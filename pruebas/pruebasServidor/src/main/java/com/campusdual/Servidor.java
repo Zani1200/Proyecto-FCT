@@ -13,7 +13,7 @@ public class Servidor {
         do{
             Socket usuarioSocket = new Socket();
             usuarioSocket = servidor.accept();
-            HiloServidor hiloServidor = new HiloServidor(usuarioSocket, servidor);
+            HiloServidor hiloServidor = new HiloServidor(usuarioSocket);
             hiloServidor.start();
         } while (true);
     }

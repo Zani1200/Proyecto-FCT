@@ -13,18 +13,9 @@ public class Cliente {
         DataOutputStream flujoSalida = new DataOutputStream(cliente.getOutputStream());
 
         do{
-            System.out.println("Escribe el puerto");
-            int port = new Scanner(System.in).nextInt();
-            flujoSalida.writeInt(port);
-            System.out.println(flujoEntrada.readUTF());
-            Socket cliente1 = new Socket("localhost", port);
-            System.out.println("Se ha creado el cliente nuevo");
-            String mensaje = null;
-            while (!Objects.equals(mensaje, "")) {
-                mensaje = new Scanner(System.in).nextLine();
-                flujoSalida.writeUTF(mensaje);
-                System.out.println(flujoEntrada.readUTF());
-            }
+            flujoSalida.writeUTF(new Scanner(System.in).nextLine());
+            String mensanje = flujoEntrada.readUTF();
+            System.out.println(mensanje);
         }while (true);
 
     }

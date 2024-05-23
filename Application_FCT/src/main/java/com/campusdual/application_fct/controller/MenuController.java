@@ -65,13 +65,33 @@ public class MenuController extends GenericController implements Initializable {
                         view_chat.setItems(mensajeObservableList);
                         getMensajesView(Integer.parseInt(chatAnterior));
                     });
+                } else {
+                    MenuConsultas menuConsultas = new MenuConsultas();
+                    mensajesList = menuConsultas.getMensajesGrupo(Integer.valueOf(idChat));
+                    System.out.println(mensajesList.size()+" "+mensajeObservableList.size());
+                    for(int i=0;i<mensajesList.size();i++){
+                        System.out.println(mensajesList.get(i).getMensaje());
+                    }
+                    Platform.runLater(() -> {
+                        for(int i=mensajeObservableList.size();i>0;i--){
+                            mensajeObservableList.remove(mensajeObservableList.get(i-1));
+                        }
+                        view_chat.setItems(mensajeObservableList);
+                    });
+                    Platform.runLater(() -> {
+                        for(int i=0;i<mensajesList.size();i++){
+                            mensajeObservableList.add(mensajesList.get(i).getId_part().getId_usu().getUsu_nombre()+","+mensajesList.get(i).getMensaje()
+                            +","+mensajesList.get(i).getId_part().getId_usu().getUsu_foto());
+                        }
+                        view_chat.setItems(mensajeObservableList);
+                    });
                 }
             }
         }
     };
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        timer.schedule(timerTask,0,1000);
+        timer.schedule(timerTask,0,2000);
     }
     public void setSocket(Usuario usuario) throws IOException {
         this.usuario = usuario;
@@ -183,6 +203,8 @@ public class MenuController extends GenericController implements Initializable {
         +","+(chatActual.getChat_id())+","+chatActual.getChat_nombre()+","+chatActual.getChat_foto());
         dataOutputStream.writeUTF(texto_enviado.getText());
     }
-
-
+    @FXML
+    private void unirseChatOnClick(ActionEvent actionEvent) {
+        sceneHandler.changeToScene(SceneHandler.UNIRSE_CHAT_SCENE);
+    }
 }

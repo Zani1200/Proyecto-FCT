@@ -12,6 +12,7 @@ import java.util.List;
 
 public class MenuConsultas implements ConsultasGeneral{
 
+    Session session = HibernateUtil.session;
     @Override
     public Usuario validarUsuario(String nombre, String contrasenha) {
         return null;
@@ -20,7 +21,6 @@ public class MenuConsultas implements ConsultasGeneral{
     @Override
     public List<Mensaje> getMensajesGrupo(Integer idChat) {
         System.out.println(idChat);
-            Session session = HibernateUtil.getSessionfactory().openSession();
             List<Object[]> mensajesQuery = session.createQuery("SELECT j.mensaje, u.usu_id, u.usu_nombre, u.usu_foto FROM Mensaje j " +
                     "INNER JOIN Participantes p ON j.id_part = p.part_id " +
                     "INNER JOIN Usuario u ON p.id_usu = u.usu_id " +

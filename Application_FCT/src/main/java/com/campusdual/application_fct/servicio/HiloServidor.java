@@ -6,6 +6,7 @@ import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.util.HibernateUtil;
+import org.hibernate.Session;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,11 +19,13 @@ public class HiloServidor extends Thread{
     private Socket socketCliente;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
+    private Session session;
     private Usuario usuario;
     private List<Mensaje> mensajeList = new ArrayList<>();
 
-    public HiloServidor(Socket socketCliente) throws IOException {
+    public HiloServidor(Socket socketCliente, Session session) throws IOException {
         this.socketCliente = socketCliente;
+        this.session = session;
         dataInputStream = new DataInputStream(socketCliente.getInputStream());
         dataOutputStream = new DataOutputStream(socketCliente.getOutputStream());
     }

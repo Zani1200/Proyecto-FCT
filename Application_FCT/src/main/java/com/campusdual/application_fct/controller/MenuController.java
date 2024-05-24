@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
@@ -29,6 +30,14 @@ import java.net.URL;
 import java.util.*;
 
 public class MenuController extends GenericController implements Initializable {
+    @FXML
+    private ImageView foto_chat;
+    @FXML
+    private Label nombre_chat_label;
+    @FXML
+    private Label participantes_label;
+    @FXML
+    private HBox info_chat;
     @FXML
     private ListView<String> list_chats = new ListView<>();
     @FXML
@@ -206,5 +215,18 @@ public class MenuController extends GenericController implements Initializable {
     @FXML
     private void unirseChatOnClick(ActionEvent actionEvent) {
         sceneHandler.changeToScene(SceneHandler.UNIRSE_CHAT_SCENE);
+    }
+    @FXML
+    private void OnClickInfoChat(MouseEvent mouseEvent) {
+        System.out.println("hola");
+    }
+
+    public void OnClickChatList(MouseEvent mouseEvent) {
+        String chatActual = list_chats.getSelectionModel().getSelectedItem();
+        if(!(chatActual==null)) {
+            System.out.println(chatActual);
+            foto_chat.setImage(new Image(chatActual.split(",")[1]));
+            nombre_chat_label.setText(chatActual.split(",")[0]);
+        }
     }
 }

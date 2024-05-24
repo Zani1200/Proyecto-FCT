@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader loginLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
         FXMLLoader registroUsuarioLoader = new FXMLLoader(HelloApplication.class.getResource("registroUsuario.fxml"));
-        FXMLLoader menuLoader = new FXMLLoader(HelloApplication.class.getResource("menus.fxml"));
+        FXMLLoader menuLoader = new FXMLLoader(HelloApplication.class.getResource("menu.fxml"));
         FXMLLoader registroChatLoader = new FXMLLoader(HelloApplication.class.getResource("registroChat.fxml"));
         FXMLLoader unirseChatLoader = new FXMLLoader(HelloApplication.class.getResource("unirseChat.fxml"));
 
@@ -33,7 +33,7 @@ public class HelloApplication extends Application {
 
         Scene loginScene = new Scene(loginPane, 600,400);
         Scene registroUsuarioScene = new Scene(registroUsuariPane, 600,400);
-        Scene menuScene = new Scene(menuPane, 600,400);
+        Scene menuScene = new Scene(menuPane, 950,750);
         Scene registroChatScene = new Scene(registroChatPane,600,400);
         Scene unirseChatScene = new Scene(unirseChatPane,300,300);
 
@@ -62,6 +62,7 @@ public class HelloApplication extends Application {
 
 
         stage.setTitle("Hello!");
+        stage.setResizable(false);
         stage.setScene(loginScene);
         stage.show();
     }

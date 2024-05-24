@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="listViewMensajes" prefHeight="400.0" prefWidth="600.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.MenuController">
+<AnchorPane fx:id="listViewMensajes" prefHeight="750.0" prefWidth="950.0" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.MenuController">
    <children>
-      <ListView fx:id="view_chat" layoutX="45.0" layoutY="37.0" prefHeight="317.0" prefWidth="423.0" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0" />
-      <TextField fx:id="texto_enviado" layoutX="184.0" layoutY="359.0" prefHeight="26.0" prefWidth="346.0" AnchorPane.bottomAnchor="14.600000000000023" />
-      <Button fx:id="boton_enviar" layoutX="538.0" layoutY="360.0" mnemonicParsing="false" onAction="#onEnviarButtonClick" text="enviar" />
-      <VBox layoutY="3.0" prefHeight="400.0" prefWidth="48.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="552.0" AnchorPane.topAnchor="0.0">
+      <ListView fx:id="view_chat" layoutX="275.0" layoutY="55.0" prefHeight="640.0" prefWidth="673.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
+      <TextField fx:id="texto_enviado" layoutX="295.0" layoutY="710.0" prefHeight="25.0" prefWidth="553.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="710.0" />
+      <Button fx:id="boton_enviar" layoutX="868.0" layoutY="710.0" mnemonicParsing="false" onAction="#onEnviarButtonClick" prefHeight="25.0" prefWidth="68.0" text="enviar" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="15.0" />
+      <VBox layoutX="1.0" layoutY="6.0" prefHeight="750.0" prefWidth="48.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="850.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btn_crearChat" mnemonicParsing="false" onAction="#OnCrearChatButtonClick" prefHeight="42.0" prefWidth="48.0" text="CHAT" />
-            <Button mnemonicParsing="false" onAction="#unirseChatOnClick" prefHeight="38.0" prefWidth="48.0" text="Button" />
+            <Button fx:id="btn_crearChat" mnemonicParsing="false" onAction="#OnCrearChatButtonClick" prefHeight="40.0" prefWidth="100.0" text="CHAT" />
+            <Button mnemonicParsing="false" onAction="#unirseChatOnClick" prefHeight="40.0" prefWidth="100.0" text="UNIRSE" />
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="BUSCAR" />
          </children>
       </VBox>
-      <ListView fx:id="list_chats" layoutX="49.0" prefHeight="400.0" prefWidth="128.0" />
+      <ListView fx:id="list_chats" layoutX="100.0" onMousePressed="#OnClickChatList" prefHeight="750.0" prefWidth="177.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="675.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane layoutX="275.0" onMousePressed="#OnClickInfoChat" prefHeight="65.0" prefWidth="675.0">
+         <children>
+            <ImageView fx:id="foto_chat" fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="8.0" onMousePressed="#OnClickInfoChat" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="nombre_chat_label" alignment="CENTER" layoutX="102.0" layoutY="14.0" onMousePressed="#OnClickInfoChat" prefHeight="17.0" prefWidth="448.0" text="gyureierfgnuibduibdiubnedfuibjsdvabiuiubjdsvaiubjpvdsfa" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="14.0" />
+            <Label fx:id="participantes_label" alignment="CENTER" layoutX="172.0" layoutY="43.0" onMousePressed="#OnClickInfoChat" text="Label" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="125.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -218,7 +218,9 @@ public class MenuController extends GenericController implements Initializable {
     }
     @FXML
     private void OnClickInfoChat(MouseEvent mouseEvent) {
-        System.out.println("hola");
+        String chatActual = list_chats.getSelectionModel().getSelectedItem();
+        sceneHandler.changeToScene(SceneHandler.INFORMACION_CHAT_SCENE);
+        ((InformacionChatController) prevMenu ).setInformacionMenu(chatActual.split(",")[0],chatActual.split(",")[1]);
     }
 
     public void OnClickChatList(MouseEvent mouseEvent) {

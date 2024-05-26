@@ -20,7 +20,6 @@ import javax.persistence.NoResultException;
 public class HibernateUtil {
     private static StandardServiceRegistry registro;
     private static SessionFactory sessionfactory;
-    public static Session session =  HibernateUtil.getSessionfactory().openSession();
 
     public static SessionFactory getSessionfactory() {
         if (sessionfactory == null) {
@@ -43,6 +42,7 @@ public class HibernateUtil {
     }
 
     public static void agregarUsuarios(Usuario usuario) throws ExisteUsuario, UsuarioNoValido{
+        Session session =  HibernateUtil.getSessionfactory().openSession();
         try {
             if(usuario.getUsu_nombre().equals("") || usuario.getUsu_contrasenha().equals("")){
                 throw new UsuarioNoValido("El usuario o contraseña no son validos");
@@ -55,34 +55,43 @@ public class HibernateUtil {
             session.beginTransaction();
             session.save(usuario);
             session.getTransaction().commit();
+            session.close();
         }
 
     }
 
     public static Chat agregarChat(Chat chat) {
+        Session session =  HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
         Chat nuevoChat = new Chat(chat.getChat_id(),chat.getChat_nombre(), chat.getChat_foto());
         session.save(nuevoChat);
         session.getTransaction().commit();
+        session.close();
         return nuevoChat;
     }
 
     public static void agregarParticipantes(Participantes participante){
+        Session session =  HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
         session.save(participante);
         session.getTransaction().commit();
+        session.close();
     }
 
     public static void agregarMensaje(Mensaje mensaje){
+        Session session =  HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
         session.save(mensaje);
         session.getTransaction().commit();
+        session.close();
     }
 
     public static Chat buscarChat(Integer chatId){
+        Session session =  HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
         Chat nuevoChat = session.get(Chat.class,chatId);
         session.getTransaction().commit();
+        session.close();
         return nuevoChat;
     }
 }

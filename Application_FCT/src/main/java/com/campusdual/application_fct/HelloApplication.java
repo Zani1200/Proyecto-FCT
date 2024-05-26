@@ -65,7 +65,8 @@ public class HelloApplication extends Application {
         controllerHashMap.put(SceneHandler.UNIRSE_CHAT_SCENE, unirseChatController);
         GenericController informacionChatController = informacionChatLoader.getController();
         menuController.setPrevMenu(informacionChatController);
-        controllerHashMap.put(SceneHandler.INFORMACION_CHAT_SCENE, unirseChatController);
+        informacionChatController.setPrevMenu(menuController);
+        controllerHashMap.put(SceneHandler.INFORMACION_CHAT_SCENE,informacionChatController);
         controllerHashMap.values().forEach(genericController -> genericController.setSceneHandler(sceneHandler));
 
 

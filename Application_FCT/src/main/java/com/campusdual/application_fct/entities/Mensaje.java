@@ -17,6 +17,12 @@ public class Mensaje implements Serializable {
     public Mensaje() {
     }
 
+    public Mensaje(int msj_id, Participantes id_part, String mensaje) {
+        this.msj_id = msj_id;
+        this.id_part = id_part;
+        this.mensaje = mensaje;
+    }
+
     public Mensaje(Participantes id_part, String mensaje) {
         this.id_part = id_part;
         this.mensaje = mensaje;

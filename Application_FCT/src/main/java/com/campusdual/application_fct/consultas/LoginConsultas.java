@@ -2,7 +2,6 @@ package com.campusdual.application_fct.consultas;
 
 import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
-import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.excepciones.NoExisteUsuario;
 import com.campusdual.application_fct.excepciones.UsuarioActivo;
@@ -14,9 +13,9 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 public class LoginConsultas implements ConsultasGeneral{
-    Session session = HibernateUtil.session;
     @Override
     public Object validarUsuario(String nombre, String contrasenha) throws UsuarioActivo, NoResultException {
+        Session session =  HibernateUtil.getSessionfactory().openSession();
         Usuario usuario = null;
         try {
             usuario = session.createQuery("SELECT j FROM Usuario j WHERE j.usu_nombre = :nombre AND j.usu_contrasenha = :contrasenha", Usuario.class)
@@ -38,6 +37,7 @@ public class LoginConsultas implements ConsultasGeneral{
             System.out.println("Se ha realizado "+i+" cambio/s");
             session.getTransaction().commit();
             System.out.println(usuario);
+            session.close();
             return usuario;
         } else {
             throw new UsuarioActivo("El usuario ya esta activo");
@@ -51,6 +51,11 @@ public class LoginConsultas implements ConsultasGeneral{
 
     @Override
     public Integer getParticipante(Usuario usuario, Chat chat) {
+        return null;
+    }
+
+    @Override
+    public List<String> getTodosParticipantes(Integer chatId) {
         return null;
     }
 

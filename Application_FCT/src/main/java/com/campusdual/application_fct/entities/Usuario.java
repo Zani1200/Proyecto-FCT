@@ -30,6 +30,12 @@ public class Usuario implements Serializable {
         this.usu_id = usu_id;
     }
 
+    public Usuario(String usu_nombre, String usu_foto, int usu_activo) {
+        this.usu_nombre = usu_nombre;
+        this.usu_foto = usu_foto;
+        this.usu_activo = usu_activo;
+    }
+
     public Usuario(String usu_nombre, String usu_contrasenha, String usu_foto, int usu_activo) {
         this.usu_nombre = usu_nombre;
         this.usu_contrasenha = usu_contrasenha;

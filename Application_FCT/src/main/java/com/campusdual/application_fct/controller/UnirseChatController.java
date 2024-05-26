@@ -13,8 +13,8 @@ public class UnirseChatController extends GenericController{
 
     @FXML
     private TextField txt_idChat;
-
-    public void unirseChatOnClick(ActionEvent actionEvent) throws IOException {
+    @FXML
+    private void unirseChatOnClick(ActionEvent actionEvent) throws IOException {
         Chat unirseChat = HibernateUtil.buscarChat(Integer.parseInt(txt_idChat.getText()));
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
         ((MenuController) prevMenu).addList_chats(unirseChat);

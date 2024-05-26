@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import java.util.List;
 
 public class ServidorConsultas implements ConsultasGeneral{
-    Session session = HibernateUtil.session;
     @Override
     public Usuario validarUsuario(String nombre, String contrasenha) {
         return null;
@@ -22,6 +21,7 @@ public class ServidorConsultas implements ConsultasGeneral{
 
     @Override
     public Integer getParticipante(Usuario usuario, Chat chat) {
+        Session session =  HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
         System.out.println(usuario.getUsu_id()+" "+(chat.getChat_id()));
         Integer participantesId = session.createQuery("SELECT p.part_id FROM Participantes p " +
@@ -31,7 +31,13 @@ public class ServidorConsultas implements ConsultasGeneral{
                 .setParameter("chat_id",(chat.getChat_id())).getSingleResult();
         System.out.println(participantesId);
         session.getTransaction().commit();
+        session.close();
         return participantesId;
+    }
+
+    @Override
+    public List<String> getTodosParticipantes(Integer chatId) {
+        return null;
     }
 
 

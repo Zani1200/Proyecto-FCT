@@ -46,14 +46,13 @@ public class HelloController implements Initializable {
             super.updateItem(item, empty);
             HBox hBox = new HBox();
             ImageView foto_perfil = new ImageView();
-            Image image = new Image("C:\\Users\\cie\\OneDrive\\Imágenes\\Escritorio\\Fotos\\agua.jpeg");
-            foto_perfil.setImage(image);
             foto_perfil.setFitWidth(50);
             foto_perfil.setFitHeight(50);
             Label label = new Label();
 
             hBox.getChildren().addAll(foto_perfil,label);
             if (item != null) {
+                System.out.println(item);
                 label.setText(item+" 1"+"\n" +
                         "\n" +
                         "FUncionaaaaaaa");

@@ -2,7 +2,6 @@ package com.campusdual.application_fct.consultas;
 
 import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
-import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.excepciones.UsuarioActivo;
 
@@ -15,4 +14,6 @@ public interface ConsultasGeneral {
     List<Mensaje> getMensajesGrupo(Integer idChat);
 
     Integer getParticipante(Usuario usuario, Chat chat);
+
+    List<String> getTodosParticipantes(Integer chatId);
 }

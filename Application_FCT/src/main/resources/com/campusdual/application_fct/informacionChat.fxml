@@ -4,21 +4,11 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="534.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.campusdual.application_fct.controller.InformacionChatController">
-   <ImageView fx:id="foto_grupo" fitHeight="100.0" fitWidth="100.0" layoutX="150.0" layoutY="28.0" pickOnBounds="true"
-              preserveRatio="true" AnchorPane.bottomAnchor="406.0" AnchorPane.leftAnchor="150.0"
-              AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="20.0"/>
-   <Label fx:id="nombre_grupo" alignment="CENTER" layoutX="186.0" layoutY="146.0"
-          text="dfgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-          AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0"/>
-   <ListView fx:id="participantes_grupo" layoutX="52.0" layoutY="217.0" prefHeight="176.0" prefWidth="300.0"
-             AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0"
-             AnchorPane.topAnchor="220.0"/>
-   <Button layoutX="256.0" layoutY="481.0" mnemonicParsing="false" onAction="#OnSalirButtonClick"
-           text="Salir del grupo"/>
-   <Label layoutX="158.0" layoutY="188.0" text="PARTICIPANTES"/>
-   <Button layoutX="50.0" layoutY="481.0" mnemonicParsing="false" onAction="#OnVolverButtonClick" text="Volver"/>
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.InformacionChatController">
+   <ImageView fx:id="foto_grupo" fitHeight="100.0" fitWidth="100.0" layoutX="150.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="406.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="20.0" />
+   <Label fx:id="nombre_grupo" alignment="CENTER" layoutX="186.0" layoutY="146.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+   <ListView fx:id="participantes_grupo" layoutX="52.0" layoutY="217.0" prefHeight="289.0" prefWidth="300.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="220.0" />
+   <Button layoutX="256.0" layoutY="481.0" mnemonicParsing="false" onAction="#OnSalirButtonClick" text="Salir del grupo" AnchorPane.bottomAnchor="20.0" />
+   <Label layoutX="158.0" layoutY="188.0" text="PARTICIPANTES" />
+   <Button layoutX="50.0" layoutY="481.0" mnemonicParsing="false" onAction="#OnVolverButtonClick" text="Volver" AnchorPane.bottomAnchor="20.0" />
 </AnchorPane>

@@ -36,7 +36,6 @@ public class LoginConsultas implements ConsultasGeneral{
             int i = actualizarActividad.executeUpdate();
             System.out.println("Se ha realizado "+i+" cambio/s");
             session.getTransaction().commit();
-            System.out.println(usuario);
             session.close();
             return usuario;
         } else {
@@ -57,6 +56,11 @@ public class LoginConsultas implements ConsultasGeneral{
     @Override
     public List<String> getTodosParticipantes(Integer chatId) {
         return null;
+    }
+
+    @Override
+    public void setActivo(Integer idUsuario) {
+
     }
 
 

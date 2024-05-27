@@ -4,18 +4,13 @@ import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.excepciones.UsuarioActivo;
+import com.campusdual.application_fct.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class HelloControllerConsultas implements ConsultasGeneral{
-    private Usuario usuario;
-
-    public HelloControllerConsultas() {
-    }
-
-    public HelloControllerConsultas(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     @Override
     public Object validarUsuario(String nombre, String contrasenha) throws UsuarioActivo {
@@ -35,5 +30,18 @@ public class HelloControllerConsultas implements ConsultasGeneral{
     @Override
     public List<String> getTodosParticipantes(Integer chatId) {
         return null;
+    }
+
+    @Override
+    public void setActivo(Integer idUsuario) {
+        Session session = HibernateUtil.getSessionfactory().openSession();
+        session.beginTransaction();
+        Query actualizarActividad = session.createQuery("UPDATE Usuario u " +
+                "SET u.usu_activo = '0' " +
+                "WHERE u.usu_id = :idUsuario").setParameter("idUsuario",idUsuario);
+        int i = actualizarActividad.executeUpdate();
+        System.out.println("Se ha realizado "+i+" cambio/s");
+        session.getTransaction().commit();
+        session.close();
     }
 }

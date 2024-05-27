@@ -1,6 +1,5 @@
 package com.campusdual.application_fct.controller;
 
-import com.campusdual.application_fct.consultas.HelloControllerConsultas;
 import com.campusdual.application_fct.consultas.MenuConsultas;
 import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
@@ -9,12 +8,12 @@ import com.campusdual.application_fct.entities.Usuario;
 
 import com.campusdual.application_fct.util.HibernateUtil;
 import com.campusdual.application_fct.util.SceneHandler;
+import com.campusdual.application_fct.util.UsuarioHandler;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,12 +21,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
-import javax.persistence.PersistenceException;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.URL;
 import java.util.*;
 
 public class MenuController extends GenericController {
@@ -68,6 +65,7 @@ public class MenuController extends GenericController {
     };
     public void setSocket(Usuario usuario) throws IOException {
         this.usuario = usuario;
+        UsuarioHandler.usuario = usuario;
         cliente = new Socket("localhost", 6000);
         dataInputStream = new DataInputStream(cliente.getInputStream());
         dataOutputStream = new DataOutputStream(cliente.getOutputStream());
@@ -219,6 +217,6 @@ public class MenuController extends GenericController {
     }
 
     public void OnClickFotoPerfil(MouseEvent mouseEvent) {
-        System.out.println("yesssssssss");
+        sceneHandler.changeToScene(SceneHandler.INFORMACION_PERFIL_SCENE);
     }
 }

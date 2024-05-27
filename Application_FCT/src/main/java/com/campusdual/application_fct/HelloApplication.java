@@ -1,11 +1,13 @@
 package com.campusdual.application_fct;
 
+import com.campusdual.application_fct.consultas.HelloControllerConsultas;
 import com.campusdual.application_fct.controller.GenericController;
 import com.campusdual.application_fct.controller.MenuController;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.servicio.HiloServidor;
 import com.campusdual.application_fct.util.HibernateUtil;
 import com.campusdual.application_fct.util.SceneHandler;
+import com.campusdual.application_fct.util.UsuarioHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +29,7 @@ public class HelloApplication extends Application {
         FXMLLoader registroChatLoader = new FXMLLoader(HelloApplication.class.getResource("registroChat.fxml"));
         FXMLLoader unirseChatLoader = new FXMLLoader(HelloApplication.class.getResource("unirseChat.fxml"));
         FXMLLoader informacionChatLoader = new FXMLLoader(HelloApplication.class.getResource("informacionChat.fxml"));
+        FXMLLoader informacionPerfilLoader = new FXMLLoader(HelloApplication.class.getResource("informacionPerfil.fxml"));
 
 
         Parent loginPane = loginLoader.load();
@@ -35,6 +38,7 @@ public class HelloApplication extends Application {
         Parent registroChatPane = registroChatLoader.load();
         Parent unirseChatPane = unirseChatLoader.load();
         Parent informacionChatPane = informacionChatLoader.load();
+        Parent informacionPerfilPane = informacionPerfilLoader.load();
 
         Scene loginScene = new Scene(loginPane, 600,400);
         Scene registroUsuarioScene = new Scene(registroUsuariPane, 600,400);
@@ -42,6 +46,7 @@ public class HelloApplication extends Application {
         Scene registroChatScene = new Scene(registroChatPane,600,400);
         Scene unirseChatScene = new Scene(unirseChatPane,300,300);
         Scene informacionChatScene = new Scene(informacionChatPane,400,600);
+        Scene informacionPerfilScene = new Scene(informacionPerfilPane,400,600);
 
         SceneHandler sceneHandler = new SceneHandler(stage);
         sceneHandler.addScene(SceneHandler.LOGIN_SCENE,loginScene);
@@ -50,6 +55,7 @@ public class HelloApplication extends Application {
         sceneHandler.addScene(SceneHandler.REGISTRO_CHAT_SCENE,registroChatScene);
         sceneHandler.addScene(SceneHandler.UNIRSE_CHAT_SCENE,unirseChatScene);
         sceneHandler.addScene(SceneHandler.INFORMACION_CHAT_SCENE,informacionChatScene);
+        sceneHandler.addScene(SceneHandler.INFORMACION_PERFIL_SCENE,informacionPerfilScene);
 
         HashMap<String, GenericController> controllerHashMap = new HashMap<>();
         GenericController loginController = loginLoader.getController();
@@ -69,6 +75,8 @@ public class HelloApplication extends Application {
         menuController.setPrevMenu(informacionChatController);
         informacionChatController.setPrevMenu(menuController);
         controllerHashMap.put(SceneHandler.INFORMACION_CHAT_SCENE,informacionChatController);
+        GenericController informacionPerfilController = informacionPerfilLoader.getController();
+        controllerHashMap.put(SceneHandler.INFORMACION_PERFIL_SCENE,informacionPerfilController);
         controllerHashMap.values().forEach(genericController -> genericController.setSceneHandler(sceneHandler));
 
 
@@ -81,6 +89,10 @@ public class HelloApplication extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
+        HelloControllerConsultas helloControllerConsultas = new HelloControllerConsultas();
+        System.out.println(UsuarioHandler.usuario);
+        helloControllerConsultas.setActivo(UsuarioHandler.usuario.getUsu_id());
+        System.exit(1);
     }
 
     public static void main(String[] args) {

@@ -40,5 +40,10 @@ public class ServidorConsultas implements ConsultasGeneral{
         return null;
     }
 
+    @Override
+    public void setActivo(Integer idUsuario) {
+
+    }
+
 
 }

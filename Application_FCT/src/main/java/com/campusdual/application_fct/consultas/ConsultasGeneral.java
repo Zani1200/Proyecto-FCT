@@ -17,5 +17,5 @@ public interface ConsultasGeneral {
 
     List<String> getTodosParticipantes(Integer chatId);
 
-
+    void setActivo(Integer idUsuario);
 }

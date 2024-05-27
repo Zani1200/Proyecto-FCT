@@ -62,4 +62,9 @@ public class MenuConsultas implements ConsultasGeneral{
         session.close();
         return usuarioList;
     }
+
+    @Override
+    public void setActivo(Integer idUsuario) {
+
+    }
 }

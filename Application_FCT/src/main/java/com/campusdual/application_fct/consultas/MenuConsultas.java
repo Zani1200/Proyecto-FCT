@@ -67,4 +67,19 @@ public class MenuConsultas implements ConsultasGeneral{
     public void setActivo(Integer idUsuario) {
 
     }
+
+    @Override
+    public boolean validarCambioNombre(Usuario usuario, String nombre) {
+        return false;
+    }
+
+    @Override
+    public boolean validarCambioContraseña(String contaseña, String contaseñaRepetida, Usuario usuario) {
+        return false;
+    }
+
+    @Override
+    public void setFoto(String foto, Usuario usuario) {
+
+    }
 }

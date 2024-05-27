@@ -46,7 +46,7 @@ public class HelloApplication extends Application {
         Scene registroChatScene = new Scene(registroChatPane,600,400);
         Scene unirseChatScene = new Scene(unirseChatPane,300,300);
         Scene informacionChatScene = new Scene(informacionChatPane,400,600);
-        Scene informacionPerfilScene = new Scene(informacionPerfilPane,400,600);
+        Scene informacionPerfilScene = new Scene(informacionPerfilPane,450,655);
 
         SceneHandler sceneHandler = new SceneHandler(stage);
         sceneHandler.addScene(SceneHandler.LOGIN_SCENE,loginScene);
@@ -72,10 +72,12 @@ public class HelloApplication extends Application {
         unirseChatController.setPrevMenu(menuController);
         controllerHashMap.put(SceneHandler.UNIRSE_CHAT_SCENE, unirseChatController);
         GenericController informacionChatController = informacionChatLoader.getController();
-        menuController.setPrevMenu(informacionChatController);
+        menuController.setPrevInfoChat(informacionChatController);
         informacionChatController.setPrevMenu(menuController);
         controllerHashMap.put(SceneHandler.INFORMACION_CHAT_SCENE,informacionChatController);
         GenericController informacionPerfilController = informacionPerfilLoader.getController();
+        menuController.setPrevInfoPerfil(informacionPerfilController);
+        informacionPerfilController.setPrevMenu(menuController);
         controllerHashMap.put(SceneHandler.INFORMACION_PERFIL_SCENE,informacionPerfilController);
         controllerHashMap.values().forEach(genericController -> genericController.setSceneHandler(sceneHandler));
 

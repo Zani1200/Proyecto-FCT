@@ -18,4 +18,7 @@ public interface ConsultasGeneral {
     List<String> getTodosParticipantes(Integer chatId);
 
     void setActivo(Integer idUsuario);
+    boolean validarCambioNombre(Usuario usuario, String nombre);
+    boolean validarCambioContraseña(String contaseña, String contaseñaRepetida, Usuario usuario);
+    void setFoto(String foto, Usuario usuario);
 }

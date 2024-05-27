@@ -44,4 +44,18 @@ public class HelloControllerConsultas implements ConsultasGeneral{
         session.getTransaction().commit();
         session.close();
     }
+
+    @Override
+    public boolean validarCambioNombre(Usuario usuario, String nombre) {
+        return false;
+    }
+
+    @Override
+    public boolean validarCambioContraseña(String contaseña, String contaseñaRepetida, Usuario usuario) {
+        return false;
+    }
+    @Override
+    public void setFoto(String foto, Usuario usuario) {
+
+    }
 }

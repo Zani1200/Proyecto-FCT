@@ -29,7 +29,7 @@ import java.util.*;
 
 public class MenuController extends GenericController {
     @FXML
-    private ImageView foto_perfil_entrada;
+    protected ImageView foto_perfil_entrada;
     @FXML
     private ImageView foto_chat;
     @FXML
@@ -45,7 +45,8 @@ public class MenuController extends GenericController {
     private Socket cliente;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
-    private Usuario usuario;
+
+    protected Usuario usuario;
     private static List<Mensaje> mensajesList;
     protected List<Chat> chatList = new ArrayList<>();
     private String datosChat;
@@ -193,7 +194,7 @@ public class MenuController extends GenericController {
         MenuConsultas menuConsultas = new MenuConsultas();
         List<String> usuarios = menuConsultas.getTodosParticipantes(Integer.valueOf(chatActual.split(",")[2]));
         sceneHandler.changeToScene(SceneHandler.INFORMACION_CHAT_SCENE);
-        ((InformacionChatController) prevMenu ).setInformacionMenu(chatActual.split(",")[0],chatActual.split(",")[1],usuarios,chatActualId);
+        ((InformacionChatController) prevInfoChat ).setInformacionMenu(chatActual.split(",")[0],chatActual.split(",")[1],usuarios,chatActualId);
     }
     @FXML
     private void OnClickChatList(MouseEvent mouseEvent) {
@@ -218,5 +219,6 @@ public class MenuController extends GenericController {
 
     public void OnClickFotoPerfil(MouseEvent mouseEvent) {
         sceneHandler.changeToScene(SceneHandler.INFORMACION_PERFIL_SCENE);
+        ((InformacionPerfilController) prevInfoPerfil).setInformacionPerfil(usuario);
     }
 }

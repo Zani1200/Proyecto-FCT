@@ -20,6 +20,7 @@ import javax.persistence.NoResultException;
 public class HibernateUtil {
     private static StandardServiceRegistry registro;
     private static SessionFactory sessionfactory;
+    private Usuario usuarioCliente;
 
     public static SessionFactory getSessionfactory() {
         if (sessionfactory == null) {
@@ -95,3 +96,5 @@ public class HibernateUtil {
         return nuevoChat;
     }
 }
+
+

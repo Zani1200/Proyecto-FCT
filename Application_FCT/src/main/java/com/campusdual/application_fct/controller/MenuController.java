@@ -1,5 +1,6 @@
 package com.campusdual.application_fct.controller;
 
+import com.campusdual.application_fct.consultas.HelloControllerConsultas;
 import com.campusdual.application_fct.consultas.MenuConsultas;
 import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
@@ -30,6 +31,8 @@ import java.net.URL;
 import java.util.*;
 
 public class MenuController extends GenericController {
+    @FXML
+    private ImageView foto_perfil_entrada;
     @FXML
     private ImageView foto_chat;
     @FXML
@@ -68,6 +71,7 @@ public class MenuController extends GenericController {
         cliente = new Socket("localhost", 6000);
         dataInputStream = new DataInputStream(cliente.getInputStream());
         dataOutputStream = new DataOutputStream(cliente.getOutputStream());
+        foto_perfil_entrada.setImage(new Image(usuario.getUsu_foto()));
         Thread actualizadorChat = new Thread() {
             @Override
             public void run() {
@@ -85,7 +89,7 @@ public class MenuController extends GenericController {
             }
         };
         actualizadorChat.start();
-        timer.schedule(actualizarChat,0,3000);
+        timer.schedule(actualizarChat,0,1000);
     }
 
     public void getMensajesView(Integer idChat) {
@@ -212,5 +216,9 @@ public class MenuController extends GenericController {
             list_chats.setItems(chatObservableList);
         }
         System.out.println(chatId);
+    }
+
+    public void OnClickFotoPerfil(MouseEvent mouseEvent) {
+        System.out.println("yesssssssss");
     }
 }

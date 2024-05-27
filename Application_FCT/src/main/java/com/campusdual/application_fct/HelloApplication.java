@@ -1,7 +1,9 @@
 package com.campusdual.application_fct;
 
 import com.campusdual.application_fct.controller.GenericController;
+import com.campusdual.application_fct.controller.MenuController;
 import com.campusdual.application_fct.entities.Usuario;
+import com.campusdual.application_fct.servicio.HiloServidor;
 import com.campusdual.application_fct.util.HibernateUtil;
 import com.campusdual.application_fct.util.SceneHandler;
 import javafx.application.Application;
@@ -79,7 +81,6 @@ public class HelloApplication extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        
     }
 
     public static void main(String[] args) {

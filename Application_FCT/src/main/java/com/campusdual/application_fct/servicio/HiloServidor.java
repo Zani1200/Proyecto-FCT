@@ -51,8 +51,13 @@ public class HiloServidor extends Thread{
                         usuario.getUsu_foto());
 
             } while (true);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ignored) {
+        } finally {
+            try {
+                socketCliente.close();
+            } catch (IOException ignored) {
+
+            }
         }
     }
 

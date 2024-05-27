@@ -16,4 +16,6 @@ public interface ConsultasGeneral {
     Integer getParticipante(Usuario usuario, Chat chat);
 
     List<String> getTodosParticipantes(Integer chatId);
+
+
 }

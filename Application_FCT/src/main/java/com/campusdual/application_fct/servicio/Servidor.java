@@ -1,25 +1,32 @@
 package com.campusdual.application_fct.servicio;
 
-
-import com.campusdual.application_fct.util.HibernateUtil;
 import org.hibernate.Session;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.*;
 
-public class Servidor {
+public class Servidor implements Runnable{
+    Session session;
+    int puerto;
+    public Servidor(int puerto, Session session) {
+        this.session = session;
+        this.puerto = puerto;
+    }
 
-    public static void main(String[] args) throws IOException {
-        Session session = HibernateUtil.getSessionfactory().openSession();
-        ServerSocket servidor = new ServerSocket(6000);
-        System.out.println("-------------SERVIDOR INICIADO-------------");
-        do{
-            Socket usuarioSocket = new Socket();
-            usuarioSocket = servidor.accept();
-            HiloServidor hiloServidor = new HiloServidor(usuarioSocket,session);
-            hiloServidor.start();
-        } while (true);
+    @Override
+    public void run() {
+        try {
+            ServerSocket servidor = new ServerSocket(puerto);
+            System.out.println("-------------SERVIDOR INICIADO-------------");
+            do {
+                Socket usuarioSocket = new Socket();
+                usuarioSocket = servidor.accept();
+                HiloServidor hiloServidor = new HiloServidor(usuarioSocket, session);
+                hiloServidor.start();
+            } while (true);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

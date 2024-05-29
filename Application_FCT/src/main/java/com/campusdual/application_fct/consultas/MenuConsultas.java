@@ -82,4 +82,9 @@ public class MenuConsultas implements ConsultasGeneral{
     public void setFoto(String foto, Usuario usuario) {
 
     }
+
+    @Override
+    public Object setPuerto() {
+        return null;
+    }
 }

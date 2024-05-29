@@ -21,4 +21,5 @@ public interface ConsultasGeneral {
     boolean validarCambioNombre(Usuario usuario, String nombre);
     boolean validarCambioContraseña(String contaseña, String contaseñaRepetida, Usuario usuario);
     void setFoto(String foto, Usuario usuario);
+    Object setPuerto();
 }

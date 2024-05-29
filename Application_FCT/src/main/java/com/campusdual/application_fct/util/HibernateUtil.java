@@ -20,7 +20,6 @@ import javax.persistence.NoResultException;
 public class HibernateUtil {
     private static StandardServiceRegistry registro;
     private static SessionFactory sessionfactory;
-    private Usuario usuarioCliente;
 
     public static SessionFactory getSessionfactory() {
         if (sessionfactory == null) {
@@ -64,7 +63,7 @@ public class HibernateUtil {
     public static Chat agregarChat(Chat chat) {
         Session session =  HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
-        Chat nuevoChat = new Chat(chat.getChat_id(),chat.getChat_nombre(), chat.getChat_foto());
+        Chat nuevoChat = new Chat(chat.getChat_id(),chat.getChat_nombre(), chat.getChat_foto(), chat.getChat_puerto());
         session.save(nuevoChat);
         session.getTransaction().commit();
         session.close();

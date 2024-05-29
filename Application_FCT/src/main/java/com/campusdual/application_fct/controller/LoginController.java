@@ -4,17 +4,14 @@ import com.campusdual.application_fct.consultas.LoginConsultas;
 import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.excepciones.NoExisteUsuario;
 import com.campusdual.application_fct.excepciones.UsuarioActivo;
-import com.campusdual.application_fct.servicio.Servidor;
 import com.campusdual.application_fct.util.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import javax.persistence.NoResultException;
+
 import java.io.IOException;
 
 

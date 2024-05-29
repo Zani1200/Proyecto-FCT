@@ -59,5 +59,10 @@ public class ServidorConsultas implements ConsultasGeneral{
 
     }
 
+    @Override
+    public Object setPuerto() {
+        return null;
+    }
+
 
 }

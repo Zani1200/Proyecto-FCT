@@ -77,5 +77,10 @@ public class LoginConsultas implements ConsultasGeneral{
 
     }
 
+    @Override
+    public Object setPuerto() {
+        return null;
+    }
+
 
 }

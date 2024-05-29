@@ -1,5 +1,6 @@
 package com.campusdual.application_fct.controller;
 
+import com.campusdual.application_fct.consultas.RegistroChatControllerConsultas;
 import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.util.HibernateUtil;
 import com.campusdual.application_fct.util.SceneHandler;
@@ -52,7 +53,10 @@ public class RegistroChatController extends GenericController implements Initial
     }
 
     public void OnAceptarButtonClick(ActionEvent actionEvent) throws IOException {
-        Chat nuevoChat = HibernateUtil.agregarChat(new Chat(txtField_nombre.getText(),foto_perfil.getImage().getUrl()));
+        RegistroChatControllerConsultas registroChatControllerConsultas = new RegistroChatControllerConsultas();
+        Integer puerto = (Integer) registroChatControllerConsultas.setPuerto();
+        System.out.println(puerto);
+        Chat nuevoChat = HibernateUtil.agregarChat(new Chat(txtField_nombre.getText(),foto_perfil.getImage().getUrl(),puerto));
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
         ((MenuController) prevMenu).addList_chats(nuevoChat);
     }

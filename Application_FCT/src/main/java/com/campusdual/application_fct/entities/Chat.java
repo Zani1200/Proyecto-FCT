@@ -14,10 +14,25 @@ public class Chat implements Serializable {
     private String chat_nombre;
     @Column
     private String chat_foto;
+    @Column
+    private int chat_puerto;
     @OneToMany(mappedBy = "id_chat", fetch = FetchType.LAZY)
     public List<Participantes> chat_part = new ArrayList<>();
 
     public Chat() {
+    }
+
+    public Chat(int chat_id, String chat_nombre, String chat_foto, int chat_puerto) {
+        this.chat_id = chat_id;
+        this.chat_nombre = chat_nombre;
+        this.chat_foto = chat_foto;
+        this.chat_puerto = chat_puerto;
+    }
+
+    public Chat(String chat_nombre, String chat_foto, int chat_puerto) {
+        this.chat_nombre = chat_nombre;
+        this.chat_foto = chat_foto;
+        this.chat_puerto = chat_puerto;
     }
 
     public Chat(int chat_id, String chat_nombre, String chat_foto) {
@@ -63,12 +78,20 @@ public class Chat implements Serializable {
         this.chat_part = chat_part;
     }
 
+    public int getChat_puerto() {
+        return chat_puerto;
+    }
+    public void setChat_puerto(int chat_puerto) {
+        this.chat_puerto = chat_puerto;
+    }
+
     @Override
     public String toString() {
         return "Chat{" +
                 "chat_id=" + chat_id +
                 ", chat_nombre='" + chat_nombre + '\'' +
                 ", chat_foto='" + chat_foto + '\'' +
+                ", chat_puerto=" + chat_puerto +
                 '}';
     }
 }

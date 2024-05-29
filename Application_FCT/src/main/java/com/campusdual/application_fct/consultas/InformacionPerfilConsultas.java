@@ -81,4 +81,9 @@ public class InformacionPerfilConsultas implements ConsultasGeneral{
         session.getTransaction().commit();
         session.close();
     }
+
+    @Override
+    public Object setPuerto() {
+        return null;
+    }
 }

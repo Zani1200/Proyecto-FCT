@@ -14,27 +14,30 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 public class HiloServidor extends Thread{
-    private Socket socketCliente;
+    private Socket cliente;
+    //private BufferedReader in;
     private DataInputStream dataInputStream;
-    private DataOutputStream dataOutputStream;
     private Session session;
     private Usuario usuario;
-    private List<Mensaje> mensajeList = new ArrayList<>();
+    private static Set<Socket> clientesSockets = new CopyOnWriteArraySet<>();
 
-    public HiloServidor(Socket socketCliente, Session session) throws IOException {
-        this.socketCliente = socketCliente;
+    public HiloServidor(Socket cliente, Session session) throws IOException {
+        this.cliente = cliente;
         this.session = session;
-        dataInputStream = new DataInputStream(socketCliente.getInputStream());
-        dataOutputStream = new DataOutputStream(socketCliente.getOutputStream());
+        clientesSockets.add(cliente);
+        //in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
+        dataInputStream = new DataInputStream(cliente.getInputStream());
     }
 
     @Override
     public void run() {
         try {
             do {
-                System.out.println(socketCliente.toString());
+                System.out.println(cliente.toString());
                 String[] datosUsuario = dataInputStream.readUTF().split(",");
                 int id = Integer.parseInt(datosUsuario[0]);
                 int usuConectado = Integer.parseInt((datosUsuario[4]));
@@ -46,25 +49,30 @@ public class HiloServidor extends Thread{
                 Participantes participante = new Participantes(participanteId);
                 HibernateUtil.agregarMensaje(new Mensaje(participante, mensaje));
 
-                dataOutputStream.writeUTF(usuario.getUsu_nombre() + "," +
-                        mensaje + "," +
-                        usuario.getUsu_foto());
+                String datosMensaje = usuario.getUsu_nombre() + "," + mensaje + "," + usuario.getUsu_foto();
+                trasmisionMensaje(datosMensaje,datosUsuario[8]);
 
             } while (true);
-        } catch (IOException ignored) {
-        } finally {
-            try {
-                socketCliente.close();
-            } catch (IOException ignored) {
-
-            }
+        } catch (IOException e) {
+            System.out.println("Error de conexion");
+            clientesSockets.remove(cliente);
+            System.out.println("El cliente se elimino");
         }
     }
 
-    @Override
-    public String toString() {
-        return "HiloServidor{" +
-                "mensajeList=" + mensajeList +
-                '}';
+    public void trasmisionMensaje(String mensaje, String port) {
+        for (Socket cliente : clientesSockets) {
+            try {
+                int localPortCliente = cliente.getLocalPort();
+                System.out.println(localPortCliente +","+port);
+                if(localPortCliente == Integer.parseInt(port)) {
+                    System.out.println("entro "+localPortCliente);
+                    DataOutputStream dataOutputStream = new DataOutputStream(cliente.getOutputStream());
+                    dataOutputStream.writeUTF(mensaje);
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

@@ -6,12 +6,11 @@ import com.campusdual.application_fct.entities.Usuario;
 import com.campusdual.application_fct.excepciones.UsuarioActivo;
 import com.campusdual.application_fct.util.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
-public class HelloControllerConsultas implements ConsultasGeneral{
-
+public class RegistroChatControllerConsultas implements ConsultasGeneral{
     @Override
     public Object validarUsuario(String nombre, String contrasenha) throws UsuarioActivo {
         return null;
@@ -34,15 +33,7 @@ public class HelloControllerConsultas implements ConsultasGeneral{
 
     @Override
     public void setActivo(Integer idUsuario) {
-        Session session = HibernateUtil.getSessionfactory().openSession();
-        session.beginTransaction();
-        Query actualizarActividad = session.createQuery("UPDATE Usuario u " +
-                "SET u.usu_activo = '0' " +
-                "WHERE u.usu_id = :idUsuario").setParameter("idUsuario",idUsuario);
-        int i = actualizarActividad.executeUpdate();
-        System.out.println("Se ha realizado "+i+" cambio/s");
-        session.getTransaction().commit();
-        session.close();
+
     }
 
     @Override
@@ -54,6 +45,7 @@ public class HelloControllerConsultas implements ConsultasGeneral{
     public boolean validarCambioContraseña(String contaseña, String contaseñaRepetida, Usuario usuario) {
         return false;
     }
+
     @Override
     public void setFoto(String foto, Usuario usuario) {
 
@@ -61,6 +53,16 @@ public class HelloControllerConsultas implements ConsultasGeneral{
 
     @Override
     public Object setPuerto() {
-        return null;
+        Integer ultimoPuerto;
+        try {
+            Session session = HibernateUtil.getSessionfactory().openSession();
+            session.beginTransaction();
+            ultimoPuerto = (Integer) session.createSQLQuery("SELECT c.chat_puerto FROM Chat c " +
+                    "ORDER BY c.chat_puerto DESC " +
+                    "LIMIT 1").getSingleResult();
+            return ultimoPuerto+1;
+        }catch (NoResultException e) {
+             return 6000;
+        }
     }
 }

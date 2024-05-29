@@ -34,7 +34,7 @@ public class LoginController extends GenericController{
             LoginConsultas loginConsultas = new LoginConsultas();
             Object usuario = loginConsultas.validarUsuario(texto_nombre.getText(), texto_contrasenha.getText());
             sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
-            ((MenuController) prevMenu).setSocket((Usuario) usuario);
+            ((MenuController) prevMenu).setMenuController((Usuario) usuario);
         } catch (UsuarioActivo | NoExisteUsuario e){
             label_informacion_menu.setText(e.getMessage());
         } catch (IOException e) {

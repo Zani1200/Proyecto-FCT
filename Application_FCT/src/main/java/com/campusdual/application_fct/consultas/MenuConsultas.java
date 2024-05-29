@@ -4,9 +4,11 @@ import com.campusdual.application_fct.entities.Chat;
 import com.campusdual.application_fct.entities.Mensaje;
 import com.campusdual.application_fct.entities.Participantes;
 import com.campusdual.application_fct.entities.Usuario;
+import com.campusdual.application_fct.excepciones.NoExisteUsuario;
 import com.campusdual.application_fct.util.HibernateUtil;
 import org.hibernate.Session;
 
+import javax.persistence.NoResultException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class MenuConsultas implements ConsultasGeneral{
                 Mensaje mensaje = new Mensaje((Integer) columna[4],new Participantes(new Usuario((Integer) columna[1],(String) columna[2], (String) columna[3])),(String) columna[0]);
                 mensajeArrayList.add(mensaje);
             }
-        session.close();
+            session.close();
             return mensajeArrayList;
     }
 
@@ -61,6 +63,11 @@ public class MenuConsultas implements ConsultasGeneral{
         session.getTransaction().commit();
         session.close();
         return usuarioList;
+    }
+
+    @Override
+    public List<Chat> getTodosChat(Integer usuarioId) {
+        return null;
     }
 
     @Override

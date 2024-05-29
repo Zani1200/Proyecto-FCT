@@ -33,6 +33,12 @@ public class HelloControllerConsultas implements ConsultasGeneral{
     }
 
     @Override
+    public List<Chat> getTodosChat(Integer idUsuario) {
+        return null;
+    }
+
+
+    @Override
     public void setActivo(Integer idUsuario) {
         Session session = HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();

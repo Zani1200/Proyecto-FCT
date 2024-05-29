@@ -59,6 +59,12 @@ public class LoginConsultas implements ConsultasGeneral{
     }
 
     @Override
+    public List<Chat> getTodosChat(Integer idUsuario) {
+        return null;
+    }
+
+
+    @Override
     public void setActivo(Integer idUsuario) {
 
     }

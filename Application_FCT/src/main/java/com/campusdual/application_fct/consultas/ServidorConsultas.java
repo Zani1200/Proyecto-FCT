@@ -24,10 +24,11 @@ public class ServidorConsultas implements ConsultasGeneral{
         Session session =  HibernateUtil.getSessionfactory().openSession();
         session.beginTransaction();
         System.out.println(usuario.getUsu_id()+" "+(chat.getChat_id()));
-        Integer participantesId = session.createQuery("SELECT p.part_id FROM Participantes p " +
+        Integer participantesId = (Integer) session.createSQLQuery("SELECT p.part_id FROM Participantes p " +
                 "INNER JOIN Usuario u ON p.id_usu = u.usu_id " +
                 "INNER JOIN Chat c ON p.id_chat = c.chat_id " +
-                "WHERE u.usu_id = :usu_id AND c.chat_id = :chat_id", Integer.class).setParameter("usu_id",usuario.getUsu_id())
+                "WHERE u.usu_id = :usu_id AND c.chat_id = :chat_id " +
+                "LIMIT 1").setParameter("usu_id",usuario.getUsu_id())
                 .setParameter("chat_id",(chat.getChat_id())).getSingleResult();
         System.out.println(participantesId);
         session.getTransaction().commit();
@@ -44,7 +45,6 @@ public class ServidorConsultas implements ConsultasGeneral{
     public List<Chat> getTodosChat(Integer idUsuario) {
         return null;
     }
-
 
     @Override
     public void setActivo(Integer idUsuario) {

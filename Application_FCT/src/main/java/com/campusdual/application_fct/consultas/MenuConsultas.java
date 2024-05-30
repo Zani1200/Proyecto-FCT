@@ -67,7 +67,12 @@ public class MenuConsultas implements ConsultasGeneral{
 
     @Override
     public List<Chat> getTodosChat(Integer usuarioId) {
-        return null;
+        Session session = HibernateUtil.getSessionfactory().openSession();
+        List<Chat> chatList = session.createQuery("SELECT c FROM Participantes p " +
+                "INNER JOIN Usuario u on u.usu_id = p.id_usu " +
+                "INNER JOIN Chat c on c.chat_id = p.id_chat " +
+                "WHERE u.usu_id = :idUsuario",Chat.class).setParameter("idUsuario",usuarioId).list();
+        return chatList;
     }
 
     @Override

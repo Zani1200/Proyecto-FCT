@@ -129,15 +129,19 @@ public class MenuController extends GenericController implements Initializable {
         this.usuario = usuario;
         UsuarioHandler.usuario = usuario;
         foto_perfil_entrada.setImage(new Image(usuario.getUsu_foto()));
-        /*
+
         MenuConsultas menuConsultas = new MenuConsultas();
         List<Chat> totalGrupos = menuConsultas.getTodosChat(usuario.getUsu_id());
         if(totalGrupos != null) {
+            for(int i=0;i<totalGrupos.size();i++) {
+                chatList.add(totalGrupos.get(i));
+                chatObservableList.add(totalGrupos.get(i).getChat_nombre() + "," + totalGrupos.get(i).getChat_foto() + "," + totalGrupos.get(i).getChat_id() + "," + totalGrupos.get(i).getChat_puerto());
+                list_chats.setItems(chatObservableList);
+            }
             System.out.println(totalGrupos);
         }
         System.out.println("gg");
 
-         */
     }
 
     private void getMensajesView(Integer idChat) {
@@ -197,6 +201,7 @@ public class MenuController extends GenericController implements Initializable {
         try {
             dataOutputStream.writeUTF(usuario.getUsu_id()+","+usuario.getUsu_nombre()+","+usuario.getUsu_contrasenha()+","+usuario.getUsu_foto()+","+usuario.getUsu_activo()
                     +","+(chat.getChat_id())+","+chat.getChat_nombre()+","+chat.getChat_foto()+","+chat.getChat_puerto());
+            System.out.println((chat.getChat_id())+","+chat.getChat_nombre()+","+chat.getChat_foto()+","+chat.getChat_puerto());
             dataOutputStream.writeUTF(mensaje);
         } catch (IOException e) {
             System.err.println("Error al enviar el mensaje: "+e.getMessage());

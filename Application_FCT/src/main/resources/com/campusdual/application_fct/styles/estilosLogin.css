@@ -1,0 +1,23 @@
+#fondo {
+    -fx-background-color: #d1d1d1;
+}
+
+#fondoDatos {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+#boton_aceptar {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+    
+}
+
+#boton_registrarse {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}

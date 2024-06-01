@@ -1,0 +1,41 @@
+#fondo_registro {
+    -fx-background-color: #d1d1d1;
+}
+
+#fondo {
+    -fx-background-color: #d1d1d1;
+}
+
+#fondo_registro_datos {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+#boton_der {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#boton_izq {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#boton_crear_cuenta {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#boton_salir {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+

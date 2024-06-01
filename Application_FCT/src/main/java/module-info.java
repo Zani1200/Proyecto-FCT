@@ -5,6 +5,7 @@ module com.campusdual.application_fct {
     requires java.persistence;
     requires java.naming;
     requires java.sql;
+    requires de.jensd.fx.glyphs.fontawesome;
 
 
     opens com.campusdual.application_fct.entities;

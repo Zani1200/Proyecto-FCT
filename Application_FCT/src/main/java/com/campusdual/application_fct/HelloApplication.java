@@ -21,7 +21,6 @@ import java.util.HashMap;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Session session = HibernateUtil.getSessionfactory().openSession();
 
         FXMLLoader loginLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
         FXMLLoader registroUsuarioLoader = new FXMLLoader(HelloApplication.class.getResource("registroUsuario.fxml"));
@@ -41,7 +40,7 @@ public class HelloApplication extends Application {
         Parent informacionPerfilPane = informacionPerfilLoader.load();
 
         Scene loginScene = new Scene(loginPane, 600,400);
-        Scene registroUsuarioScene = new Scene(registroUsuariPane, 600,400);
+        Scene registroUsuarioScene = new Scene(registroUsuariPane, 686,629);
         Scene menuScene = new Scene(menuPane, 950,750);
         Scene registroChatScene = new Scene(registroChatPane,600,400);
         Scene unirseChatScene = new Scene(unirseChatPane,300,300);

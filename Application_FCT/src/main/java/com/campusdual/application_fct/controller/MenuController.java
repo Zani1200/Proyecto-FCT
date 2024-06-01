@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
@@ -28,6 +29,8 @@ import java.net.URL;
 import java.util.*;
 
 public class MenuController extends GenericController implements Initializable {
+    @FXML
+    private AnchorPane pantalla_sin_chats;
     @FXML
     protected ImageView foto_perfil_entrada;
     @FXML
@@ -99,6 +102,7 @@ public class MenuController extends GenericController implements Initializable {
                         ImageView foto_perfil = new ImageView();
                         Label label = new Label();
                         hBox.getChildren().addAll(foto_perfil,label);
+                        System.out.println(informacionMensaje[2]);
                         Image image = new Image(informacionMensaje[2]);
                         foto_perfil.setImage(image);
                         foto_perfil.setFitWidth(30);
@@ -122,7 +126,7 @@ public class MenuController extends GenericController implements Initializable {
         Participantes nuevoParticipante = new Participantes(new Usuario(usuario.getUsu_id(),usuario.getUsu_nombre(),usuario.getUsu_foto()),nuevoChat);
         HibernateUtil.agregarParticipantes(nuevoParticipante);
         conectarServidor(nuevoChat.getChat_puerto());
-        enviarMensaje(new Usuario(usuario.getUsu_id(),usuario.getUsu_nombre(),usuario.getUsu_foto()),nuevoChat,"El usuario "+usuario.getUsu_nombre()+" se ha unido");
+        enviarMensaje(new Usuario(usuario.getUsu_id(),usuario.getUsu_nombre(),usuario.getUsu_foto()),nuevoChat,"El usuario "+usuario.getUsu_nombre()+" se ha unido,1");
     }
 
     public void setMenuController(Usuario usuario) throws IOException {
@@ -162,6 +166,7 @@ public class MenuController extends GenericController implements Initializable {
             try {
                 do {
                     String mensaje = dataInputStream.readUTF();
+                    //filtar el mensaje de unirse
                     Platform.runLater(() -> {
                         mensajeObservableList.add(mensaje);
                         view_chat.setItems(mensajeObservableList);
@@ -245,6 +250,7 @@ public class MenuController extends GenericController implements Initializable {
             foto_chat.setImage(new Image(chatActual.split(",")[1]));
             nombre_chat_label.setText(chatActual.split(",")[0]);
         }
+        pantalla_sin_chats.setVisible(false);
     }
 
     @FXML
@@ -256,13 +262,15 @@ public class MenuController extends GenericController implements Initializable {
     protected void eliminarChat(int chatId){
         chatList.remove(chatId);
         chatObservableList.clear();
+        if(chatList.isEmpty()){
+            pantalla_sin_chats.setVisible(true);
+        }
         for(int i = 0;i<chatList.size();i++){
             chatObservableList.add(chatList.get(i).getChat_nombre()+"," +
                     chatList.get(i).getChat_foto()+","+
                     chatList.get(i).getChat_id());
             list_chats.setItems(chatObservableList);
         }
-        System.out.println(chatId);
     }
 
 }

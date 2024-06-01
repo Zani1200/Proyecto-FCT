@@ -1,0 +1,76 @@
+#fondo {
+    -fx-background-color: #d1d1d1;
+}
+
+#fondo_info_chat {
+    -fx-background-color: white;
+}
+
+#fondo_foto {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+#fondo_nombre {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+#boton_salir_info {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#boton_salir_grupo {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#fondo_contrasenha {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+#boton_salir {
+    -fx-background-color: #d1d1d1;
+}
+
+#btn_guardar_foto {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#btn_cambio_nombre {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#btn_cambiar_contra {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#boton_der {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+
+#boton_izq {
+    -fx-background-color: white;
+    -fx-border-width: 2px;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 4px;
+}
+

@@ -44,6 +44,11 @@ public class InformacionPerfilController extends GenericController implements In
         imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoEstandar.png"));
         imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoPerfilHombre.png"));
         imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoPerfilMujer.png"));
+        txt_cambio_contraseña.setText("");
+        txt_contraseña_repetida.setText("");
+        txt_cambio_nombre.setText("");
+        label_cambio_nombre.setText("");
+        label_cambio_contraseña.setText("");
     }
 
     public void setInformacionPerfil(Usuario usuario) {
@@ -87,7 +92,6 @@ public class InformacionPerfilController extends GenericController implements In
             } else {
                 label_cambio_nombre.setText("El nombre ya existe");
             }
-            label_cambio_nombre.setText("");
         }
     }
     @FXML
@@ -97,8 +101,6 @@ public class InformacionPerfilController extends GenericController implements In
         }else {
             label_cambio_contraseña.setText("Las contraseñas no son iguales");
         }
-        txt_cambio_contraseña.setText("");
-        txt_contraseña_repetida.setText("");
     }
 
     public void OnButtonGuardarFotoClick(ActionEvent actionEvent) {

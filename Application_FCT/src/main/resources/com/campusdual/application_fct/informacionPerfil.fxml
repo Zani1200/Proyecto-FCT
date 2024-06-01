@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="646.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.InformacionPerfilController">
-   <AnchorPane layoutX="100.0" layoutY="44.0" prefHeight="243.0" prefWidth="350.0" AnchorPane.bottomAnchor="367.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="80.0" layoutY="14.0" text="Foto" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="14.0" />
+<AnchorPane fx:id="fondo" prefHeight="646.0" prefWidth="450.0" stylesheets="@styles/estilosInformacion.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.InformacionPerfilController">
+   <AnchorPane fx:id="fondo_foto" layoutX="100.0" layoutY="44.0" prefHeight="243.0" prefWidth="350.0" AnchorPane.bottomAnchor="367.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="80.0" layoutY="14.0" text="Foto" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="Calibri" size="12.0" />
+         </font></Label>
       <ImageView fx:id="foto_perfil" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="60.0" />
-      <Button fx:id="boton_der" mnemonicParsing="false" onAction="#ButtonDerechaOnClick" text="&gt;" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="110.0" />
-      <Button fx:id="boton_izq" mnemonicParsing="false" onAction="#ButtonIzquierdaOnClick" text="&lt;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="110.0" />
-      <Button fx:id="btn_guardar_foto" layoutX="252.0" layoutY="188.0" mnemonicParsing="false" onAction="#OnButtonGuardarFotoClick" text="Button" />
+      <Button fx:id="boton_der" mnemonicParsing="false" onAction="#ButtonDerechaOnClick" text="&gt;" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="110.0" />
+      <Button fx:id="boton_izq" mnemonicParsing="false" onAction="#ButtonIzquierdaOnClick" text="&lt;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="110.0" />
+      <Button fx:id="btn_guardar_foto" layoutX="252.0" layoutY="188.0" mnemonicParsing="false" onAction="#OnButtonGuardarFotoClick" text="Cambiar" AnchorPane.rightAnchor="40.0" />
    </AnchorPane>
-   <Label alignment="CENTER" layoutX="80.0" layoutY="14.0" prefHeight="25.0" prefWidth="180.0" text="INFORMACION CUENTA" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" />
-   <AnchorPane layoutX="120.0" layoutY="268.0" prefHeight="96.0" prefWidth="350.0" AnchorPane.bottomAnchor="266.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="300.0">
+   <Label alignment="CENTER" layoutX="80.0" layoutY="14.0" prefHeight="25.0" prefWidth="180.0" text="INFORMACION CUENTA" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
+      <font>
+         <Font name="Calibri" size="18.0" />
+      </font></Label>
+   <AnchorPane fx:id="fondo_nombre" layoutX="50.0" layoutY="322.0" prefHeight="96.0" prefWidth="350.0" AnchorPane.bottomAnchor="244.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="322.0">
       <TextField fx:id="txt_cambio_nombre" layoutX="41.0" layoutY="38.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.leftAnchor="41.0" />
       <Label layoutX="41.0" layoutY="14.0" text="Nombre" />
-      <Button fx:id="btn_cambio_nombre" layoutX="246.0" layoutY="38.0" mnemonicParsing="false" onAction="#OnButtonCambioNombreClick" prefHeight="25.0" prefWidth="63.0" text="Button" AnchorPane.rightAnchor="40.0" />
+      <Button fx:id="btn_cambio_nombre" layoutX="244.0" layoutY="36.0" mnemonicParsing="false" onAction="#OnButtonCambioNombreClick" prefHeight="29.0" prefWidth="65.0" text="Cambiar" AnchorPane.rightAnchor="40.0" />
       <Label fx:id="label_cambio_nombre" layoutX="41.0" layoutY="69.0" />
    </AnchorPane>
-   <AnchorPane layoutX="92.0" layoutY="467.0" prefHeight="170.0" prefWidth="350.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="450.0">
-      <PasswordField fx:id="txt_cambio_contraseña" layoutX="40.0" layoutY="58.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="58.0" />
-      <Label layoutX="40.0" layoutY="30.0" text="Contraseña" />
-      <Button layoutX="250.0" layoutY="114.0" mnemonicParsing="false" onAction="#OnButtonContaseñaClick" prefHeight="25.0" prefWidth="63.0" text="Button" AnchorPane.rightAnchor="40.0" />
-      <Label fx:id="label_cambio_contraseña" layoutX="40.0" layoutY="148.0" text="Label" />
-      <PasswordField fx:id="txt_contraseña_repetida" layoutX="40.0" layoutY="114.0" prefHeight="17.0" prefWidth="149.0" />
-      <Label layoutX="40.0" layoutY="91.0" text="Repite contraseña" />
+   <AnchorPane fx:id="fondo_contrasenha" layoutX="92.0" layoutY="467.0" prefHeight="170.0" prefWidth="350.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="450.0">
+      <PasswordField fx:id="txt_cambio_contraseña" layoutX="40.0" layoutY="37.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="37.0" />
+      <Label layoutX="40.0" layoutY="20.0" text="Contraseña" />
+      <Button fx:id="btn_cambiar_contra" layoutX="243.0" layoutY="102.0" mnemonicParsing="false" onAction="#OnButtonContaseñaClick" prefHeight="29.0" prefWidth="65.0" text="Cambiar" AnchorPane.rightAnchor="40.0" />
+      <Label fx:id="label_cambio_contraseña" layoutX="40.0" layoutY="148.0" />
+      <PasswordField fx:id="txt_contraseña_repetida" layoutX="40.0" layoutY="104.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label layoutX="40.0" layoutY="85.0" text="Repite contraseña" />
    </AnchorPane>
-   <Button layoutX="331.0" layoutY="620.0" mnemonicParsing="false" onAction="#OnSalirButtonClick" text="Salir" />
+   <Button fx:id="boton_salir" layoutX="410.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnSalirButtonClick">
+      <graphic>
+         <FontAwesomeIconView glyphName="CLOSE" />
+      </graphic></Button>
 </AnchorPane>

@@ -12,9 +12,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 public class HiloServidor extends Thread{
@@ -44,13 +42,15 @@ public class HiloServidor extends Thread{
                 usuario = new Usuario(id, datosUsuario[1], datosUsuario[2], datosUsuario[3], usuConectado);
 
                 String mensaje = dataInputStream.readUTF();
+                System.out.println(mensaje+" este es el MENSAJE");
+                String[] mensajeDatos = mensaje.split(",");
                 ServidorConsultas registroUsuarioConsultas = new ServidorConsultas();
                 Integer participanteId = registroUsuarioConsultas.getParticipante(usuario,new Chat(Integer.parseInt(datosUsuario[5]),datosUsuario[6],datosUsuario[7]));
                 Participantes participante = new Participantes(participanteId);
-                HibernateUtil.agregarMensaje(new Mensaje(participante, mensaje));
+                HibernateUtil.agregarMensaje(new Mensaje(participante, mensajeDatos[0]));
 
                 String datosMensaje = usuario.getUsu_nombre() + "," + mensaje + "," + usuario.getUsu_foto();
-                trasmisionMensaje(datosMensaje,datosUsuario[8]);
+                trasmisionMensaje(datosMensaje,datosUsuario[8],cliente);
 
             } while (true);
         } catch (IOException e) {
@@ -60,15 +60,25 @@ public class HiloServidor extends Thread{
         }
     }
 
-    public void trasmisionMensaje(String mensaje, String port) {
+    public void trasmisionMensaje(String mensaje,String port,Socket clienteActual) {
+        String[] mensajeDatos = mensaje.split(",");
         for (Socket cliente : clientesSockets) {
             try {
                 int localPortCliente = cliente.getLocalPort();
-                System.out.println(localPortCliente +","+port);
                 if(localPortCliente == Integer.parseInt(port)) {
-                    System.out.println("entro "+localPortCliente);
-                    DataOutputStream dataOutputStream = new DataOutputStream(cliente.getOutputStream());
-                    dataOutputStream.writeUTF(mensaje);
+                    if(Objects.equals(mensajeDatos[2], "1")) {
+                        if(clienteActual == cliente){
+                            System.out.println("entro");
+                        } else {
+                            System.out.println("entro1");
+                            DataOutputStream dataOutputStream = new DataOutputStream(cliente.getOutputStream());
+                            dataOutputStream.writeUTF(mensajeDatos[0]+","+mensajeDatos[1]+","+mensajeDatos[3]);
+                        }
+                    } else {
+                        System.out.println("entro2");
+                        DataOutputStream dataOutputStream = new DataOutputStream(cliente.getOutputStream());
+                        dataOutputStream.writeUTF(mensaje);
+                    }
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

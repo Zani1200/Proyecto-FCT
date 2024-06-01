@@ -1,0 +1,36 @@
+#view_chat {
+    -fx-fixed-cell-size: 40px;
+}
+
+#pantalla_sin_chats {
+    -fx-background-color: #d1d1d1;
+}
+
+#menu_lateral {
+    -fx-background-color: white;
+}
+
+#btn_crearChat {
+    -fx-background-color: white;
+}
+
+#btn_crearChat:hover {
+    -fx-background-color: rgb(236, 236, 236);
+}
+
+#btn_anhadirChat {
+    -fx-background-color: white;
+}
+
+#btn_anhadirChat:hover {
+    -fx-background-color: rgb(236, 236, 236);
+}
+
+#info_chat {
+    -fx-background-color: white;
+}
+
+#listViewMensajes {
+    -fx-background-color: white;
+}
+

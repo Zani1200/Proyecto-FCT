@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="listViewMensajes" prefHeight="750.0" prefWidth="950.0" stylesheets="@styles/estilosMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.MenuController">
+<AnchorPane fx:id="listViewMensajes" prefHeight="700.0" prefWidth="900.0" stylesheets="@styles/estilosMenu.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.MenuController">
    <ListView fx:id="view_chat" layoutX="275.0" layoutY="55.0" prefHeight="640.0" prefWidth="673.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0" />
    <TextField fx:id="texto_enviado" layoutX="295.0" layoutY="710.0" prefHeight="25.0" prefWidth="553.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="710.0" /><Button fx:id="boton_enviar" layoutX="868.0" layoutY="710.0" mnemonicParsing="false" onAction="#onEnviarButtonClick" prefHeight="25.0" prefWidth="68.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="15.0">
       <graphic>
@@ -27,6 +27,7 @@
    <AnchorPane fx:id="info_chat" layoutX="275.0" onMousePressed="#onClickInfoChat" prefHeight="65.0" prefWidth="675.0">
       <ImageView fx:id="foto_chat" fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="nombre_chat_label" alignment="CENTER" layoutX="102.0" layoutY="14.0" prefHeight="17.0" prefWidth="448.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="14.0" />
+      <Label fx:id="idChat" layoutX="603.0" layoutY="43.0" />
    </AnchorPane>
    <AnchorPane fx:id="pantalla_sin_chats" layoutX="275.0" prefHeight="755.0" prefWidth="675.0">
       <Label layoutX="308.0" layoutY="369.0" text="Bienvenido" />

@@ -30,6 +30,8 @@ import java.util.*;
 
 public class MenuController extends GenericController implements Initializable {
     @FXML
+    private Label idChat;
+    @FXML
     private AnchorPane pantalla_sin_chats;
     @FXML
     protected ImageView foto_perfil_entrada;
@@ -232,7 +234,7 @@ public class MenuController extends GenericController implements Initializable {
 
     @FXML
     private void onClickInfoChat() {
-        String chatActual = list_chats.getSelectionModel().getSelectedItem();
+        String chatActual = list_chats.getSelectionModel().getSelectedItem();;
         Integer chatActualId = list_chats.getSelectionModel().getSelectedIndex();
         MenuConsultas menuConsultas = new MenuConsultas();
         List<String> usuarios = menuConsultas.getTodosParticipantes(Integer.valueOf(chatActual.split(",")[2]));
@@ -243,12 +245,14 @@ public class MenuController extends GenericController implements Initializable {
     @FXML
     private void onClickChatList() {
         String chatActual = list_chats.getSelectionModel().getSelectedItem();
+        System.out.println(chatActual);
         int chatActualId = list_chats.getSelectionModel().getSelectedIndex();
         conectarServidor(chatList.get(chatActualId).getChat_puerto());
         System.out.println(chatList);
         if(!(chatActual==null)) {
             foto_chat.setImage(new Image(chatActual.split(",")[1]));
             nombre_chat_label.setText(chatActual.split(",")[0]);
+            idChat.setText("ID Chat: "+chatActual.split(",")[2]);
         }
         pantalla_sin_chats.setVisible(false);
     }

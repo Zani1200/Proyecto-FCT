@@ -4,9 +4,9 @@ import com.campusdual.application_fct.entities.Usuario;
 
 public class UsuarioHandler {
 
-    public static Usuario usuario;
+    public static Usuario USUARIO;
 
     public UsuarioHandler(Usuario usuario) {
-        UsuarioHandler.usuario = usuario;
+        UsuarioHandler.USUARIO = usuario;
     }
 }

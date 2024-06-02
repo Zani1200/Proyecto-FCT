@@ -12,7 +12,7 @@
          <FontAwesomeIconView glyphName="SEND" />
       </graphic></Button>
    <AnchorPane fx:id="menu_lateral" layoutX="1.0" layoutY="6.0" prefHeight="750.0" prefWidth="48.0" stylesheets="@styles/estilosMenu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="850.0" AnchorPane.topAnchor="0.0">
-      <Button fx:id="btn_crearChat" mnemonicParsing="false" onAction="#OnCrearChatButtonClick" prefHeight="40.0" prefWidth="100.0">
+      <Button fx:id="btn_crearChat" mnemonicParsing="false" onAction="#onCrearChatButtonClick" prefHeight="40.0" prefWidth="100.0">
          <graphic>
             <FontAwesomeIconView glyphName="PLUS" size="15" wrappingWidth="10.428571701049805" />
          </graphic></Button>
@@ -21,10 +21,10 @@
             <FontAwesomeIconView glyphName="USER_PLUS" size="15.0" />
          </graphic>
       </Button>
-      <ImageView fx:id="foto_perfil_entrada" fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="683.0" onMousePressed="#OnClickFotoPerfil" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="foto_perfil_entrada" fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="683.0" onMousePressed="#onClickFotoPerfil" pickOnBounds="true" preserveRatio="true" />
    </AnchorPane>
-   <ListView fx:id="list_chats" layoutX="100.0" onMousePressed="#OnClickChatList" prefHeight="750.0" prefWidth="177.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="675.0" AnchorPane.topAnchor="0.0" />
-   <AnchorPane fx:id="info_chat" layoutX="275.0" onMousePressed="#OnClickInfoChat" prefHeight="65.0" prefWidth="675.0">
+   <ListView fx:id="list_chats" layoutX="100.0" onMousePressed="#onClickChatList" prefHeight="750.0" prefWidth="177.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="675.0" AnchorPane.topAnchor="0.0" />
+   <AnchorPane fx:id="info_chat" layoutX="275.0" onMousePressed="#onClickInfoChat" prefHeight="65.0" prefWidth="675.0">
       <ImageView fx:id="foto_chat" fitHeight="50.0" fitWidth="50.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="nombre_chat_label" alignment="CENTER" layoutX="102.0" layoutY="14.0" prefHeight="17.0" prefWidth="448.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="14.0" />
    </AnchorPane>

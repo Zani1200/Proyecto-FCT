@@ -42,9 +42,9 @@ public class MenuController extends GenericController implements Initializable {
     @FXML
     private ListView<String> view_chat = new ListView<>();
     @FXML
-    public TextField texto_enviado;
-    public ObservableList<String> mensajeObservableList = FXCollections.observableArrayList();
-    public ObservableList<String> chatObservableList = FXCollections.observableArrayList();
+    private TextField texto_enviado;
+    private ObservableList<String> mensajeObservableList = FXCollections.observableArrayList();
+    private ObservableList<String> chatObservableList = FXCollections.observableArrayList();
     private Socket cliente;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
@@ -58,10 +58,10 @@ public class MenuController extends GenericController implements Initializable {
 
             @Override
             public ListCell<String> call(ListView<String> stringListView) {
-                return new modificacionTablaChat();
+                return new ModificacionTablaChat();
             }
 
-            static class modificacionTablaChat extends ListCell<String> {
+            static class ModificacionTablaChat extends ListCell<String> {
                 @Override
                 public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
@@ -87,10 +87,10 @@ public class MenuController extends GenericController implements Initializable {
         view_chat.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> stringListView) {
-                return new modificarCell();
+                return new ModificarCell();
             }
 
-            static class modificarCell extends ListCell<String> {
+            static class ModificarCell extends ListCell<String> {
 
                 @Override
                 public void updateItem(String item, boolean empty){
@@ -131,7 +131,7 @@ public class MenuController extends GenericController implements Initializable {
 
     public void setMenuController(Usuario usuario) throws IOException {
         this.usuario = usuario;
-        UsuarioHandler.usuario = usuario;
+        UsuarioHandler.USUARIO = usuario;
         foto_perfil_entrada.setImage(new Image(usuario.getUsu_foto()));
 
         MenuConsultas menuConsultas = new MenuConsultas();
@@ -166,7 +166,7 @@ public class MenuController extends GenericController implements Initializable {
             try {
                 do {
                     String mensaje = dataInputStream.readUTF();
-                    //filtar el mensaje de unirse
+                    System.out.println(mensaje);
                     Platform.runLater(() -> {
                         mensajeObservableList.add(mensaje);
                         view_chat.setItems(mensajeObservableList);
@@ -214,7 +214,7 @@ public class MenuController extends GenericController implements Initializable {
     }
 
     @FXML
-    private void OnCrearChatButtonClick() {
+    private void onCrearChatButtonClick() {
         sceneHandler.changeToScene(SceneHandler.REGISTRO_CHAT_SCENE);
     }
 
@@ -231,7 +231,7 @@ public class MenuController extends GenericController implements Initializable {
     }
 
     @FXML
-    private void OnClickInfoChat() {
+    private void onClickInfoChat() {
         String chatActual = list_chats.getSelectionModel().getSelectedItem();
         Integer chatActualId = list_chats.getSelectionModel().getSelectedIndex();
         MenuConsultas menuConsultas = new MenuConsultas();
@@ -241,7 +241,7 @@ public class MenuController extends GenericController implements Initializable {
     }
 
     @FXML
-    private void OnClickChatList() {
+    private void onClickChatList() {
         String chatActual = list_chats.getSelectionModel().getSelectedItem();
         int chatActualId = list_chats.getSelectionModel().getSelectedIndex();
         conectarServidor(chatList.get(chatActualId).getChat_puerto());
@@ -254,7 +254,7 @@ public class MenuController extends GenericController implements Initializable {
     }
 
     @FXML
-    private void OnClickFotoPerfil() {
+    private void onClickFotoPerfil() {
         sceneHandler.changeToScene(SceneHandler.INFORMACION_PERFIL_SCENE);
         ((InformacionPerfilController) prevInfoPerfil).setInformacionPerfil(usuario);
     }

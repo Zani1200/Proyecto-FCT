@@ -19,8 +19,8 @@ public class UnirseChatController extends GenericController{
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
         ((MenuController) prevMenu).addList_chats(unirseChat);
     }
-
-    public void OnSalirButtonClick(ActionEvent actionEvent) {
+    @FXML
+    private void onSalirButtonClick(ActionEvent actionEvent) {
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
     }
 }

@@ -21,8 +21,6 @@ import java.util.ResourceBundle;
 
 public class RegistroChatController extends GenericController implements Initializable {
     @FXML
-    private Label informacion_registro;
-    @FXML
     private TextField txtField_nombre;
     @FXML
     private ImageView foto_perfil;
@@ -35,24 +33,24 @@ public class RegistroChatController extends GenericController implements Initial
         imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoPerfilMujer.png"));
         foto_perfil.setImage(imageList.get(numeroImagen));
     }
-
-    public void ButtonDerechaOnClick(ActionEvent actionEvent) {
+    @FXML
+    private void buttonDerechaOnClick() {
         numeroImagen++;
         if (numeroImagen > 2){
             numeroImagen = 0;
         }
         foto_perfil.setImage(imageList.get(numeroImagen));
     }
-
-    public void ButtonIzquierdaOnClick(ActionEvent actionEvent) {
+    @FXML
+    private void buttonIzquierdaOnClick() {
         numeroImagen--;
         if (numeroImagen < 0){
             numeroImagen = 2;
         }
         foto_perfil.setImage(imageList.get(numeroImagen));
     }
-
-    public void OnAceptarButtonClick(ActionEvent actionEvent) throws IOException {
+    @FXML
+    private void onAceptarButtonClick() {
         RegistroChatControllerConsultas registroChatControllerConsultas = new RegistroChatControllerConsultas();
         Integer puerto = (Integer) registroChatControllerConsultas.setPuerto();
         System.out.println(puerto);
@@ -60,8 +58,8 @@ public class RegistroChatController extends GenericController implements Initial
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
         ((MenuController) prevMenu).addList_chats(nuevoChat);
     }
-
-    public void OnSalirButtonClick(ActionEvent actionEvent) {
+    @FXML
+    private void onSalirButtonClick() {
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
     }
 }

@@ -17,9 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class RegistroUsuarioController extends GenericController implements Initializable {
     @FXML
@@ -40,8 +38,8 @@ public class RegistroUsuarioController extends GenericController implements Init
         imageList.add(new Image("C:\\Proyecto-FCT\\Application_FCT\\src\\main\\resources\\com\\campusdual\\application_fct\\assets\\fotoPerfilMujer.png"));
         foto_perfil.setImage(imageList.get(numeroImagen));
     }
-
-    public void ButtonDerechaOnClick(ActionEvent actionEvent) {
+    @FXML
+    private void buttonDerechaOnClick(ActionEvent actionEvent) {
         numeroImagen++;
         if (numeroImagen > 2){
             numeroImagen = 0;
@@ -49,25 +47,28 @@ public class RegistroUsuarioController extends GenericController implements Init
         foto_perfil.setImage(imageList.get(numeroImagen));
     }
 
-
-    public void ButtonIzquierdaOnClick(ActionEvent actionEvent) {
+    @FXML
+    private void buttonIzquierdaOnClick(ActionEvent actionEvent) {
         numeroImagen--;
         if (numeroImagen < 0){
             numeroImagen = 2;
         }
         foto_perfil.setImage(imageList.get(numeroImagen));
     }
-
-    public void OnAceptarButtonClick(ActionEvent actionEvent){
+    @FXML
+    private void onAceptarButtonClick(ActionEvent actionEvent){
         try {
-            HibernateUtil.agregarUsuarios(new Usuario(txtField_nombre.getText(), password_registro.getText(), foto_perfil.getImage().getUrl(), 0));
+            byte[] encodeContrasenha = Base64.getEncoder().encode(password_registro.getText().getBytes());
+            String contrasenhaEncriptada = new String(encodeContrasenha);
+            System.out.println(contrasenhaEncriptada);
+            HibernateUtil.agregarUsuarios(new Usuario(txtField_nombre.getText(), contrasenhaEncriptada, foto_perfil.getImage().getUrl(), 0));
             sceneHandler.changeToScene(SceneHandler.LOGIN_SCENE);
         } catch (ExisteUsuario | UsuarioNoValido e){
             informacion_registro.setText(e.getMessage());
         }
     }
-
-    public void OnSalirButtonClick(ActionEvent actionEvent) {
+    @FXML
+    private void onSalirButtonClick(ActionEvent actionEvent) {
         sceneHandler.changeToScene(SceneHandler.LOGIN_SCENE);
     }
 }

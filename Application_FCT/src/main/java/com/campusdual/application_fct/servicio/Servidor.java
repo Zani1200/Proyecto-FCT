@@ -7,8 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Servidor implements Runnable{
-    Session session;
-    int puerto;
+    private Session session;
+    private int puerto;
     public Servidor(int puerto, Session session) {
         this.session = session;
         this.puerto = puerto;

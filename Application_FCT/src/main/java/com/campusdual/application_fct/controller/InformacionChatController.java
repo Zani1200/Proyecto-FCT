@@ -29,12 +29,12 @@ public class InformacionChatController extends GenericController{
     private Integer chatId;
     private ObservableList<String> participantesObservableList = FXCollections.observableArrayList();
     @FXML
-    private void OnSalirButtonClick(ActionEvent actionEvent) {
+    private void onSalirButtonClick() {
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
         ((MenuController)prevMenu).eliminarChat(chatId);
     }
     @FXML
-    private void OnVolverButtonClick(ActionEvent actionEvent) {
+    private void onVolverButtonClick(ActionEvent actionEvent) {
         sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
     }
     public void setInformacionMenu(String nombre, String foto, List<String> usuarios,Integer chatId){
@@ -47,10 +47,10 @@ public class InformacionChatController extends GenericController{
         participantes_grupo.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
             @Override
             public ListCell<String> call(ListView<String> stringListView) {
-                return new modificarCell();
+                return new ModificarCell();
             }
 
-            static class modificarCell extends ListCell<String> {
+            static class ModificarCell extends ListCell<String> {
                 @Override
                 public void updateItem(String item, boolean empty){
                     super.updateItem(item, empty);

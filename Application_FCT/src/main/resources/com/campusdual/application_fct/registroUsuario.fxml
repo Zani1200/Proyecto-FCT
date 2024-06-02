@@ -8,9 +8,9 @@
 <AnchorPane fx:id="fondo_registro" prefHeight="600.0" prefWidth="400.0" stylesheets="@styles/estilosRegistro.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.campusdual.application_fct.controller.RegistroUsuarioController">
    <AnchorPane fx:id="fondo_registro_datos" layoutX="143.0" layoutY="90.0" prefHeight="450.0" prefWidth="400.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="90.0">
       <ImageView fx:id="foto_perfil" fitHeight="80.0" fitWidth="80.0" layoutX="160.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="120.0" />
-      <Button fx:id="boton_der" layoutX="308.0" layoutY="154.0" mnemonicParsing="false" onAction="#ButtonDerechaOnClick" text="&gt;" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="174.0" />
+      <Button fx:id="boton_der" layoutX="308.0" layoutY="154.0" mnemonicParsing="false" onAction="#buttonDerechaOnClick" text="&gt;" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="174.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="60.0" text="Foto" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="80.0" />
-      <Button fx:id="boton_izq" layoutX="57.0" layoutY="154.0" mnemonicParsing="false" onAction="#ButtonIzquierdaOnClick" text="&lt;" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="174.0" />
+      <Button fx:id="boton_izq" layoutX="57.0" layoutY="154.0" mnemonicParsing="false" onAction="#buttonIzquierdaOnClick" text="&lt;" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="174.0" />
       <Label alignment="CENTER" layoutX="156.0" layoutY="6.0" prefHeight="25.0" prefWidth="180.0" text="Registro Cuenta" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font name="Calibri" size="18.0" />
@@ -20,9 +20,9 @@
       <TextField fx:id="txtField_nombre" layoutX="60.0" layoutY="224.0" prefHeight="25.0" prefWidth="217.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="250.0" />
       <Label alignment="CENTER" layoutX="80.0" layoutY="262.0" text="Contraseña" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="290.0" />
       <PasswordField fx:id="password_registro" layoutX="60.0" layoutY="289.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="320.0" />
-      <Button fx:id="boton_crear_cuenta" layoutX="225.0" layoutY="267.0" mnemonicParsing="false" onAction="#OnAceptarButtonClick" text="Crear Cuenta" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="70.0" />
+      <Button fx:id="boton_crear_cuenta" layoutX="225.0" layoutY="267.0" mnemonicParsing="false" onAction="#onAceptarButtonClick" text="Crear Cuenta" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="70.0" />
       <Label layoutX="59.0" layoutY="271.0" />
-      <Button fx:id="boton_salir" mnemonicParsing="false" onAction="#OnSalirButtonClick" text="Salir" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="70.0" />
+      <Button fx:id="boton_salir" mnemonicParsing="false" onAction="#onSalirButtonClick" text="Salir" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="70.0" />
       <Label fx:id="informacion_registro" layoutX="59.0" layoutY="352.0" prefHeight="18.0" prefWidth="260.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="352.0" />
    </AnchorPane>
 </AnchorPane>

@@ -70,14 +70,6 @@ public class Chat implements Serializable {
         this.chat_foto = chat_foto;
     }
 
-    public List<Participantes> getChat_part() {
-        return chat_part;
-    }
-
-    public void setChat_part(List<Participantes> chat_part) {
-        this.chat_part = chat_part;
-    }
-
     public int getChat_puerto() {
         return chat_puerto;
     }

@@ -45,6 +45,7 @@ public class HiloServidor extends Thread{
                 System.out.println(mensaje+" este es el MENSAJE");
                 String[] mensajeDatos = mensaje.split(",");
                 ServidorConsultas registroUsuarioConsultas = new ServidorConsultas();
+                System.out.println(usuario);
                 Integer participanteId = registroUsuarioConsultas.getParticipante(usuario,new Chat(Integer.parseInt(datosUsuario[5]),datosUsuario[6],datosUsuario[7]));
                 Participantes participante = new Participantes(participanteId);
                 HibernateUtil.agregarMensaje(new Mensaje(participante, mensajeDatos[0]));

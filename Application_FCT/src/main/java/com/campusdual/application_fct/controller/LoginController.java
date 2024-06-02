@@ -13,26 +13,25 @@ import javafx.scene.control.TextField;
 
 
 import java.io.IOException;
+import java.util.Base64;
 
 
 public class LoginController extends GenericController{
     @FXML
     private Label label_informacion_menu;
     @FXML
-    private Button boton_registrarse;
-    @FXML
-    private Button boton_aceptar;
-    @FXML
     private TextField texto_nombre;
     @FXML
     private TextField texto_contrasenha;
 
-
-
-    public void onAceptarButtonClick(ActionEvent actionEvent){
+    @FXML
+    private void onAceptarButtonClick(){
         try {
             LoginConsultas loginConsultas = new LoginConsultas();
-            Object usuario = loginConsultas.validarUsuario(texto_nombre.getText(), texto_contrasenha.getText());
+            byte[] encodeContrasenha = Base64.getEncoder().encode(texto_contrasenha.getText().getBytes());
+            String contrasenhaEncriptada = new String(encodeContrasenha);
+            System.out.println(contrasenhaEncriptada);
+            Object usuario = loginConsultas.validarUsuario(texto_nombre.getText(), contrasenhaEncriptada);
             sceneHandler.changeToScene(SceneHandler.MENU_SCENE);
             ((MenuController) prevMenu).setMenuController((Usuario) usuario);
         } catch (UsuarioActivo | NoExisteUsuario e){
@@ -41,8 +40,8 @@ public class LoginController extends GenericController{
             throw new RuntimeException(e);
         }
     }
-
-    public void onRegistrarButtonClick(ActionEvent actionEvent) {
+    @FXML
+    private void onRegistrarButtonClick() {
         sceneHandler.changeToScene(SceneHandler.REGISTRO_USUARIO_SCENE);
     }
 }

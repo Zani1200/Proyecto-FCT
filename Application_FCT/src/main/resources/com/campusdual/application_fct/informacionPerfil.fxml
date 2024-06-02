@@ -13,9 +13,9 @@
             <Font name="Calibri" size="12.0" />
          </font></Label>
       <ImageView fx:id="foto_perfil" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="60.0" />
-      <Button fx:id="boton_der" mnemonicParsing="false" onAction="#ButtonDerechaOnClick" text="&gt;" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="110.0" />
-      <Button fx:id="boton_izq" mnemonicParsing="false" onAction="#ButtonIzquierdaOnClick" text="&lt;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="110.0" />
-      <Button fx:id="btn_guardar_foto" layoutX="252.0" layoutY="188.0" mnemonicParsing="false" onAction="#OnButtonGuardarFotoClick" text="Cambiar" AnchorPane.rightAnchor="40.0" />
+      <Button fx:id="boton_der" mnemonicParsing="false" onAction="#buttonDerechaOnClick" text="&gt;" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="110.0" />
+      <Button fx:id="boton_izq" mnemonicParsing="false" onAction="#buttonIzquierdaOnClick" text="&lt;" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="110.0" />
+      <Button fx:id="btn_guardar_foto" layoutX="252.0" layoutY="188.0" mnemonicParsing="false" onAction="#onButtonGuardarFotoClick" text="Cambiar" AnchorPane.rightAnchor="40.0" />
    </AnchorPane>
    <Label alignment="CENTER" layoutX="80.0" layoutY="14.0" prefHeight="25.0" prefWidth="180.0" text="INFORMACION CUENTA" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
       <font>
@@ -24,18 +24,18 @@
    <AnchorPane fx:id="fondo_nombre" layoutX="50.0" layoutY="322.0" prefHeight="96.0" prefWidth="350.0" AnchorPane.bottomAnchor="244.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="322.0">
       <TextField fx:id="txt_cambio_nombre" layoutX="41.0" layoutY="38.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.leftAnchor="41.0" />
       <Label layoutX="41.0" layoutY="14.0" text="Nombre" />
-      <Button fx:id="btn_cambio_nombre" layoutX="244.0" layoutY="36.0" mnemonicParsing="false" onAction="#OnButtonCambioNombreClick" prefHeight="29.0" prefWidth="65.0" text="Cambiar" AnchorPane.rightAnchor="40.0" />
+      <Button fx:id="btn_cambio_nombre" layoutX="244.0" layoutY="36.0" mnemonicParsing="false" onAction="#onButtonCambioNombreClick" prefHeight="29.0" prefWidth="65.0" text="Cambiar" AnchorPane.rightAnchor="40.0" />
       <Label fx:id="label_cambio_nombre" layoutX="41.0" layoutY="69.0" />
    </AnchorPane>
    <AnchorPane fx:id="fondo_contrasenha" layoutX="92.0" layoutY="467.0" prefHeight="170.0" prefWidth="350.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="450.0">
-      <PasswordField fx:id="txt_cambio_contraseña" layoutX="40.0" layoutY="37.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="37.0" />
+      <PasswordField fx:id="txt_cambio_contrasenha" layoutX="40.0" layoutY="37.0" prefHeight="25.0" prefWidth="149.0" AnchorPane.bottomAnchor="106.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="37.0" />
       <Label layoutX="40.0" layoutY="20.0" text="Contraseña" />
-      <Button fx:id="btn_cambiar_contra" layoutX="243.0" layoutY="102.0" mnemonicParsing="false" onAction="#OnButtonContaseñaClick" prefHeight="29.0" prefWidth="65.0" text="Cambiar" AnchorPane.rightAnchor="40.0" />
-      <Label fx:id="label_cambio_contraseña" layoutX="40.0" layoutY="148.0" />
-      <PasswordField fx:id="txt_contraseña_repetida" layoutX="40.0" layoutY="104.0" prefHeight="17.0" prefWidth="149.0" />
+      <Button fx:id="btn_cambiar_contra" layoutX="243.0" layoutY="102.0" mnemonicParsing="false" onAction="#onButtonContasenhaClick" prefHeight="29.0" prefWidth="65.0" text="Cambiar" AnchorPane.rightAnchor="40.0" />
+      <Label fx:id="label_cambio_contrasenha" layoutX="40.0" layoutY="148.0" />
+      <PasswordField fx:id="txt_contrasenha_repetida" layoutX="40.0" layoutY="104.0" prefHeight="17.0" prefWidth="149.0" />
       <Label layoutX="40.0" layoutY="85.0" text="Repite contraseña" />
    </AnchorPane>
-   <Button fx:id="boton_salir" layoutX="410.0" layoutY="15.0" mnemonicParsing="false" onAction="#OnSalirButtonClick">
+   <Button fx:id="boton_salir" layoutX="410.0" layoutY="15.0" mnemonicParsing="false" onAction="#onSalirButtonClick">
       <graphic>
          <FontAwesomeIconView glyphName="CLOSE" />
       </graphic></Button>

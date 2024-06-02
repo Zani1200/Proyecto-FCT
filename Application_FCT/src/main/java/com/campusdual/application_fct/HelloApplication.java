@@ -81,7 +81,7 @@ public class HelloApplication extends Application {
         controllerHashMap.values().forEach(genericController -> genericController.setSceneHandler(sceneHandler));
 
 
-        stage.setTitle("Hello!");
+        stage.setTitle("QuickChat");
         stage.setResizable(false);
         stage.setScene(loginScene);
         stage.show();
@@ -91,8 +91,8 @@ public class HelloApplication extends Application {
     public void stop() throws Exception {
         super.stop();
         HelloControllerConsultas helloControllerConsultas = new HelloControllerConsultas();
-        System.out.println(UsuarioHandler.usuario);
-        helloControllerConsultas.setActivo(UsuarioHandler.usuario.getUsu_id());
+        System.out.println(UsuarioHandler.USUARIO);
+        helloControllerConsultas.setActivo(UsuarioHandler.USUARIO.getUsu_id());
         System.exit(1);
     }
 
